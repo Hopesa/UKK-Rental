@@ -25,5 +25,6 @@ require_once('function.php');
 $_SESSION['error'] = "";
 // declare stuff here so we do not have to do this on each page.
 $output="";
+$sOutput="";
 // json response array
 $response = array("error" => FALSE);

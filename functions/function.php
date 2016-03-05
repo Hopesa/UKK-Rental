@@ -13,22 +13,13 @@ function createAccount($pUsername, $pPassword) { //User Account, Not that "Accou
     if (!empty($pUsername) && !empty($pPassword)) {
         // escape the $pUsername to avoid SQL Injections
         $eUsername = mysql_real_escape_string($pUsername);
-        $sql = "SELECT username FROM user_data WHERE username = '" . $eUsername . "' LIMIT 1";
+        $sql = "SELECT username FROM login WHERE username = '" . $eUsername . "' LIMIT 1";
         // Note the use of trigger_error instead of or die.
         $query = mysql_query($sql) or trigger_error("Query Failed: " . mysql_error());
-        // Error checks (Should be explained with the error)
-//        if ($uLen <= 4 || $uLen >= 11) {
-//            $_SESSION['error'] = "Username must be between 4 and 11 characters.";
-//        }elseif ($pLen < 6) {
-//            $_SESSION['error'] = "Password must be longer then 6 characters.";
-//        }elseif (mysql_num_rows($query) == 1) {
-//            $_SESSION['error'] = "Username already exists.";
-//        }else {
-            // All errors passed lets
             // Create our insert SQL by hashing the password and using the escaped Username.
-            $sql = "INSERT INTO user_data (`username` , `password`) VALUES ('" . $eUsername . "', '" . hashPassword($pPassword, SALT1, SALT2) . "');";
+            $sql = "INSERT INTO login (`username` , `password`) VALUES ('" . $eUsername . "', '" . hashPassword($pPassword, SALT1, SALT2) . "');";
             $query = mysql_query($sql) or trigger_error("Query Failed: " . mysql_error());
-            $sql = "SELECT user_id FROM user_data WHERE username = '$eUsername'";
+            $sql = "SELECT IDUser FROM login WHERE username = '$eUsername'";
             $query = mysql_query($sql) or trigger_error("Query Failed: " . mysql_error());
             if ($query) {
                 return true;
@@ -43,10 +34,10 @@ function loggedIn() {
     // check both loggedin and username to verify user.
     if (isset($_SESSION['loggedin']) && isset($_SESSION['username'])) {
         $user = $_SESSION['username'];
-        $sql = "SELECT user_id FROM user_data WHERE username = '$user'";
+        $sql = "SELECT IDUser FROM login WHERE username = '$user'";
         $query = mysql_query($sql) or trigger_error("Query Failed: " . mysql_error());
         $dataid = mysql_fetch_assoc($query);
-        $_SESSION['userid'] = $dataid["user_id"];
+        $_SESSION['userid'] = $dataid["IDUser"];
         return true;
     }
     return false;
@@ -61,92 +52,27 @@ function logoutUser() {
 }
 function validateUser($pUsername, $pPassword) {
     // See if the username and password are valid.
-    $sql = "SELECT username FROM user_data
-		WHERE username = '" . mysql_real_escape_string($pUsername) . "' AND password = '" . hashPassword($pPassword, SALT1, SALT2) . "' LIMIT 1";
+    $sql = "SELECT UserName FROM login
+		WHERE UserName = '" . mysql_real_escape_string($pUsername) . "' AND Password = '" . hashPassword($pPassword, SALT1, SALT2) . "' LIMIT 1";
     $query = mysql_query($sql) or trigger_error("Query Failed: " . mysql_error());
     // If one row was returned, the user was logged in!
+
+    $row = mysql_fetch_assoc($query);
+    echo $row['UserName'];
     if (mysql_num_rows($query) == 1) {
         $row = mysql_fetch_assoc($query);
-        $_SESSION['username'] = $row['username'];
+        $_SESSION['username'] = $row['UserName'];
         $_SESSION['loggedin'] = true;
         return true;
     }
     return false;
 }
-//Functions for Data Manipulation
-class Transaction
-{
-    private $db;
-
-    function __construct($DB_con)
-    {
-        $this->db = $DB_con;
-    }
-
-    public function create_transaction(){
+function create_transaction(){
 
     }
-    public function edit_transaction(){
+function edit_transaction(){
 
     }
-    public function delete_transaction(){
+function delete_transaction(){
 
     }
-
-}
-class Vehicle
-{
-    private $db;
-
-    function __construct($DB_con)
-    {
-        $this->db = $DB_con;
-    }
-
-    public function edit_vehicle($license,$year,$tariff,$status, $type){
-
-    }
-    public function add_vehicle($license,$year,$tariff,$status, $type){
-
-    }
-    public function delete_vehicle($license){
-
-    }
-    public function service_vehicle($license,$codeservice,$date,$cost){
-
-    }
-
-}
-class Driver
-{
-    private $db;
-
-    function __construct($DB_con)
-    {
-        $this->db = $DB_con;
-    }
-    public function edit_driver($id_driver,$nama,$alamat,$telp,$sim,$salary){
-
-    }
-    public function add_driver($nama,$alamat,$telp,$sim,$salary){
-
-    }
-    public function delete_driver($id_driver){
-
-    }
-}
-class Owner { private $db; function __construct($DB_con) { $this->db = $DB_con; }
-    public function edit_Owner(){
-
-    }
-    public function add_Owner(){
-
-    }
-
-    public function delete_Owner(){
-
-    }
-    public function Salary_Owner(){
-
-    }
-}
