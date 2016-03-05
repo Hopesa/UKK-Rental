@@ -8,86 +8,72 @@
  * No Database Operational yet
  * Ignore Undefined
  */
-
-class User
-{
-    private $db;
-
-    function __construct($DB_con)
-    {
-        $this->db = $DB_con;
-    }
-    public function register($username,$pass)
-    {
-        try
-        {
-
-            $new_password = password_hash($pass, PASSWORD_DEFAULT);
-
-            $stmt = $this->db->prepare("INSERT INTO login(UserName,Password)
-                                                       VALUES(:username, :pass)");
-
-            $stmt->bindparam(":username", $username);
-            $stmt->bindparam(":pass", $new_password);
-            $stmt->execute();
-
-            return $stmt;
-        }
-        catch(PDOException $e)
-        {
-            echo $e->getMessage();
+function createAccount($pUsername, $pPassword) { //User Account, Not that "Account"
+    // First check we have data passed in.
+    if (!empty($pUsername) && !empty($pPassword)) {
+        // escape the $pUsername to avoid SQL Injections
+        $eUsername = mysql_real_escape_string($pUsername);
+        $sql = "SELECT username FROM user_data WHERE username = '" . $eUsername . "' LIMIT 1";
+        // Note the use of trigger_error instead of or die.
+        $query = mysql_query($sql) or trigger_error("Query Failed: " . mysql_error());
+        // Error checks (Should be explained with the error)
+//        if ($uLen <= 4 || $uLen >= 11) {
+//            $_SESSION['error'] = "Username must be between 4 and 11 characters.";
+//        }elseif ($pLen < 6) {
+//            $_SESSION['error'] = "Password must be longer then 6 characters.";
+//        }elseif (mysql_num_rows($query) == 1) {
+//            $_SESSION['error'] = "Username already exists.";
+//        }else {
+            // All errors passed lets
+            // Create our insert SQL by hashing the password and using the escaped Username.
+            $sql = "INSERT INTO user_data (`username` , `password`) VALUES ('" . $eUsername . "', '" . hashPassword($pPassword, SALT1, SALT2) . "');";
+            $query = mysql_query($sql) or trigger_error("Query Failed: " . mysql_error());
+            $sql = "SELECT user_id FROM user_data WHERE username = '$eUsername'";
+            $query = mysql_query($sql) or trigger_error("Query Failed: " . mysql_error());
+            if ($query) {
+                return true;
         }
     }
-
-    public function login($username,$pass)
-    {
-        try
-        {
-            $stmt = $this->db->prepare("SELECT * FROM login WHERE UserName=:username LIMIT 1");
-            $stmt->execute(array(':username'=>$username));
-            $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
-            if($stmt->rowCount() > 0)
-            {
-                if(password_verify($pass, $userRow['Password']))
-                {
-                    $_SESSION['user_session'] = $userRow['IDUser'];
-                    $_SESSION['username'] = $userRow['UserName'];
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-        catch(PDOException $e)
-        {
-            echo $e->getMessage();
-        }
-    }
-
-    public function is_loggedin()
-    {
-        if(isset($_SESSION['user_session']))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public function redirect($url)
-    {
-        header("Location: $url");
-    }
-
-    public function logout()
-    {
-        session_destroy();
-        unset($_SESSION['user_session']);
-        unset($_SESSION['username']);
+    return false;
+}
+function hashPassword($pPassword, $pSalt1="2345#$%@3e", $pSalt2="taesa%#@2%^#") {
+    return sha1(md5($pSalt2 . $pPassword . $pSalt1));
+}
+function loggedIn() {
+    // check both loggedin and username to verify user.
+    if (isset($_SESSION['loggedin']) && isset($_SESSION['username'])) {
+        $user = $_SESSION['username'];
+        $sql = "SELECT user_id FROM user_data WHERE username = '$user'";
+        $query = mysql_query($sql) or trigger_error("Query Failed: " . mysql_error());
+        $dataid = mysql_fetch_assoc($query);
+        $_SESSION['userid'] = $dataid["user_id"];
         return true;
     }
+    return false;
 }
+function logoutUser() {
+    // using unset will remove the variable
+    // and thus logging off the user.
+    unset($_SESSION['username']);
+    unset($_SESSION['loggedin']);
+    unset($_SESSION['userid']);
+    return true;
+}
+function validateUser($pUsername, $pPassword) {
+    // See if the username and password are valid.
+    $sql = "SELECT username FROM user_data
+		WHERE username = '" . mysql_real_escape_string($pUsername) . "' AND password = '" . hashPassword($pPassword, SALT1, SALT2) . "' LIMIT 1";
+    $query = mysql_query($sql) or trigger_error("Query Failed: " . mysql_error());
+    // If one row was returned, the user was logged in!
+    if (mysql_num_rows($query) == 1) {
+        $row = mysql_fetch_assoc($query);
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['loggedin'] = true;
+        return true;
+    }
+    return false;
+}
+//Functions for Data Manipulation
 class Transaction
 {
     private $db;
@@ -149,14 +135,7 @@ class Driver
 
     }
 }
-class Owner
-{
-    private $db;
-
-    function __construct($DB_con)
-    {
-        $this->db = $DB_con;
-    }
+class Owner { private $db; function __construct($DB_con) { $this->db = $DB_con; }
     public function edit_Owner(){
 
     }

@@ -15,16 +15,16 @@ if($user->is_loggedin()!="")
 
 if(isset($_POST['btn-login']))
 {
-    $user = $_POST['username'];
+    $uname = $_POST['username'];
     $upass = $_POST['password'];
 
-    if($user->login($user,$upass))
+    if($user->login($uname,$upass))
     {
         $user->redirect('admin.php'); //If Success redirect to Admin Dashboard
     }
     else
     {
-        $error = "Wrong Details !"; //Or Invalid Pass
+        $error = "GDI"; //Or Invalid Pass
     }
 }
 ?>
