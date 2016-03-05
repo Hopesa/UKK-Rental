@@ -24,7 +24,7 @@ class User
 
             $new_password = password_hash($pass, PASSWORD_DEFAULT);
 
-            $stmt = $this->db->prepare("INSERT INTO users(username,pass)
+            $stmt = $this->db->prepare("INSERT INTO login(UserName,Password)
                                                        VALUES(:username, :pass)");
 
             $stmt->bindparam(":username", $username);
@@ -43,15 +43,15 @@ class User
     {
         try
         {
-            $stmt = $this->db->prepare("SELECT * FROM users WHERE username=:username LIMIT 1");
-            $stmt->execute(array(':uname'=>$username));
+            $stmt = $this->db->prepare("SELECT * FROM login WHERE UserName=:username LIMIT 1");
+            $stmt->execute(array(':username'=>$username));
             $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
             if($stmt->rowCount() > 0)
             {
-                if(password_verify($pass, $userRow['user_pass']))
+                if(password_verify($pass, $userRow['Password']))
                 {
-                    $_SESSION['user_session'] = $userRow['user_id'];
-                    $_SESSION['username'] = $userRow['username'];
+                    $_SESSION['user_session'] = $userRow['IDUser'];
+                    $_SESSION['username'] = $userRow['UserName'];
                     return true;
                 }
                 else
@@ -72,6 +72,7 @@ class User
         {
             return true;
         }
+        return false;
     }
 
     public function redirect($url)
@@ -116,16 +117,16 @@ class Vehicle
         $this->db = $DB_con;
     }
 
-    public function edit_vehicle(){
+    public function edit_vehicle($license,$year,$tariff,$status, $type){
 
     }
-    public function add_vehicle(){
+    public function add_vehicle($license,$year,$tariff,$status, $type){
 
     }
-    public function delete_vehicle(){
+    public function delete_vehicle($license){
 
     }
-    public function service_vehicle(){
+    public function service_vehicle($license,$codeservice,$date,$cost){
 
     }
 
@@ -138,13 +139,13 @@ class Driver
     {
         $this->db = $DB_con;
     }
-    public function edit_driver(){
+    public function edit_driver($id_driver,$nama,$alamat,$telp,$sim,$salary){
 
     }
-    public function add_driver(){
+    public function add_driver($nama,$alamat,$telp,$sim,$salary){
 
     }
-    public function delete_driver(){
+    public function delete_driver($id_driver){
 
     }
 }

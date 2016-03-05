@@ -17,7 +17,7 @@ Remember to use PDO
 $DB_host = "localhost";
 $DB_user = "root";
 $DB_pass = "";
-$DB_name = "ukk";
+$DB_name = "rental_mobil";
 
 try
 {
