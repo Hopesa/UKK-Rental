@@ -12,22 +12,8 @@ session_start();
 /***********
 Remember to use PDO
  ************/
-//mysql_connect('localhost', 'root', '') or trigger_error("Unable to connect to the database: " . mysql_error());
-//mysql_select_db('ukk') or trigger_error("Unable to switch to the database: " . mysql_error()); <-- In case PDO go tifu
-$DB_host = "localhost";
-$DB_user = "root";
-$DB_pass = "";
-$DB_name = "rental_mobil";
-
-try
-{
-    $DB_con = new PDO("mysql:host={$DB_host};dbname={$DB_name}",$DB_user,$DB_pass);
-    $DB_con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch(PDOException $e)
-{
-    echo $e->getMessage();
-}
+mysql_connect('localhost', 'root', '') or trigger_error("Unable to connect to the database: " . mysql_error());
+mysql_select_db('rental_mobil') or trigger_error("Unable to switch to the database: " . mysql_error());
 /***************
 Encryption Hashes
  ****************/
@@ -39,6 +25,5 @@ require_once('function.php');
 $_SESSION['error'] = "";
 // declare stuff here so we do not have to do this on each page.
 $output="";
-$user = new User($DB_con);
 // json response array
 $response = array("error" => FALSE);
