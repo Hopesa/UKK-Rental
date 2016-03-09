@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - rental_mobil@localhost" uuid="b039c69a-c1fb-4157-91f9-40bd93776daa">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>rental_mobil.*</schema-pattern>
+      <default-schemas>rental_mobil.*</default-schemas>
+    </data-source>
+  </component>
+</project>

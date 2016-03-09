@@ -6,23 +6,27 @@
  * Time: 19:12
  */
 require_once('config/config.php');
-if (isset($_GET['id'])) ;
+if(isset($_GET['id']));
 {
     $query = mysql_query("Select * from kendaraan WHERE NoPlat = '$_GET[id]'");
     $data = mysql_fetch_array($query);
     $query = mysql_query("Select * from pemilik WHERE KodePemilik = '$data[KodePemilik]'");
     $dataext = mysql_fetch_array($query);
 }
-if (isset($_POST['btn-submit'])) {
+if(isset($_POST['btn-submit']))
+{
 
     $plat = $_POST['plat'];
     $tarif = $_POST['tarif'];
     $deskripsi = $_POST['deskripsi'];
 
 
-    if (edit_kendaraan($tarif, $deskripsi, $plat)) {
+    if(edit_kendaraan($tarif,$deskripsi,$plat))
+    {
         $output = 'Success';
-    } else {
+    }
+    else
+    {
         $output = "Wrong Details !";
     }
 }
@@ -54,8 +58,7 @@ echo $output;
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#sidebar-collapse">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -67,29 +70,25 @@ echo $output;
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <svg class="glyph stroked male-user">
                             <use xlink:href="#stroked-male-user"></use>
-                        </svg>
-                        User <span class="caret"></span></a>
+                        </svg> User <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
                             <a href="#">
                                 <svg class="glyph stroked male-user">
                                     <use xlink:href="#stroked-male-user"></use>
-                                </svg>
-                                Profile</a>
+                                </svg> Profile</a>
                         </li>
                         <li>
                             <a href="#">
                                 <svg class="glyph stroked gear">
                                     <use xlink:href="#stroked-gear"></use>
-                                </svg>
-                                Settings</a>
+                                </svg> Settings</a>
                         </li>
                         <li>
                             <a href="#">
                                 <svg class="glyph stroked cancel">
                                     <use xlink:href="#stroked-cancel"></use>
-                                </svg>
-                                Logout</a>
+                                </svg> Logout</a>
                         </li>
                     </ul>
                 </li>
@@ -110,7 +109,7 @@ echo $output;
         <li class="active">
             <a href="index.html">
                 <svg class="glyph stroked home">
-                    <use xlink:href="#stroked-home"/>
+                    <use xlink:href="#stroked-home" />
                 </svg>
                 Dashboard</a>
         </li>
@@ -119,13 +118,14 @@ echo $output;
         <li><a href="tables.html">Data Mobil</a></li>
 
 
+
+
         <li role="presentation" class="divider"></li>
         <li>
             <a href="login.html">
                 <svg class="glyph stroked male-user">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-male-user"></use>
-                </svg>
-                Login Page</a>
+                </svg> Login Page</a>
         </li>
     </ul>
 
@@ -170,9 +170,7 @@ echo $output;
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="Mobil">Mobil</label>
                                 <div class="col-md-5">
-                                    <input id="mobil" name="mobil" type="text" placeholder="Nama Mobil"
-                                           class="form-control input-md" required="" readonly
-                                           value="<?php echo $data['Nama Mobil'] ?>">
+                                    <input id="mobil" name="mobil" type="text" placeholder="Nama Mobil" class="form-control input-md" required="" readonly value="<?php echo $data['Nama Mobil']?>">
 
                                 </div>
                             </div>
@@ -181,8 +179,7 @@ echo $output;
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="Plat">No Plat</label>
                                 <div class="col-md-5">
-                                    <input id="plat" name="plat" type="text" placeholder="Plat Nomor Mobil"
-                                           class="form-control input-md" readonly value="<?php echo $data['NoPlat'] ?>">
+                                    <input id="plat" name="plat" type="text" placeholder="Plat Nomor Mobil" class="form-control input-md" readonly value="<?php echo $data['NoPlat']?>">
 
                                 </div>
                             </div>
@@ -192,9 +189,7 @@ echo $output;
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="Mobil">Tarif</label>
                                 <div class="col-md-5">
-                                    <input id="tarif" name="tarif" type="text" placeholder="Tarif"
-                                           class="form-control input-md" required=""
-                                           value="<?php echo $data['TarifPerJam'] ?>">
+                                    <input id="tarif" name="tarif" type="text" placeholder="Tarif" class="form-control input-md" required="" value="<?php echo $data['TarifPerJam']?>">
 
                                 </div>
                             </div>
@@ -202,8 +197,7 @@ echo $output;
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="Pemilik">Deskripsi</label>
                                 <div class="col-md-5">
-                                    <textarea id="deskripsi" name="deskripsi" placeholder="Deskripsi Mobil"
-                                              class="form-control input-md"><?php echo $data['Deskripsi'] ?></textarea>
+                                    <textarea id="deskripsi" name="deskripsi"  placeholder="Deskripsi Mobil" class="form-control input-md" ><?php echo $data['Deskripsi']?></textarea>
 
                                 </div>
                             </div>
@@ -212,9 +206,7 @@ echo $output;
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="Pemilik">Nama Pemilik</label>
                                 <div class="col-md-5">
-                                    <input id="pemilik" name="pemilik" type="text" placeholder="Nama Pemilik"
-                                           class="form-control input-md" value="<?php echo $dataext['NmPemilik'] ?>"
-                                           readonly>
+                                    <input id="pemilik" name="pemilik" type="text" placeholder="Nama Pemilik" class="form-control input-md" value="<?php echo $dataext['NmPemilik']?>" readonly>
 
                                 </div>
                             </div>
@@ -243,11 +235,11 @@ echo $output;
 </div>
 <!--/.main-->
 <script>
-    function toggleField(hideObj, showObj) {
-        hideObj.disabled = true;
-        hideObj.style.display = 'none';
-        showObj.disabled = false;
-        showObj.style.display = 'inline';
+    function toggleField(hideObj,showObj){
+        hideObj.disabled=true;
+        hideObj.style.display='none';
+        showObj.disabled=false;
+        showObj.style.display='inline';
         showObj.focus();
     }
 </script>
@@ -260,7 +252,7 @@ echo $output;
 <script src="js/bootstrap-datepicker.js"></script>
 <script src="js/bootstrap-table.js"></script>
 <script>
-    !function ($) {
+    ! function ($) {
         $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
             $(this).find('em:first').toggleClass("glyphicon-minus");
         });
