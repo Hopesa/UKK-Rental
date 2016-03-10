@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1d293a86-2352-44cd-9bae-45fd693661d4" name="Default" comment="+commit">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addmobil.php" afterPath="$PROJECT_DIR$/addmobil.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/inc_admin.php" afterPath="$PROJECT_DIR$/config/inc_admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/inc_tran.php" afterPath="$PROJECT_DIR$/config/inc_tran.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/inc_user.php" afterPath="$PROJECT_DIR$/config/inc_user.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mngreservasi.php" afterPath="$PROJECT_DIR$/mngreservasi.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pelanggan.php" afterPath="$PROJECT_DIR$/pelanggan.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pemilik.php" afterPath="$PROJECT_DIR$/pemilik.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rprt_pemilik.php" afterPath="$PROJECT_DIR$/rprt_pemilik.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rprt_peminjaman.php" afterPath="$PROJECT_DIR$/rprt_peminjaman.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.php" afterPath="$PROJECT_DIR$/test.php" />
-    </list>
+    <list default="true" id="1d293a86-2352-44cd-9bae-45fd693661d4" name="Default" comment="+commit" />
     <ignored path="UKK.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -274,26 +260,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inc_admin.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="inc_admin.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/inc_admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.8461537">
-              <caret line="54" column="16" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.47826087">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
                 <element signature="e#6#123#0#PHP" expanded="true" />
-                <marker date="1457627610760" expanded="true" signature="205:218" placeholder="SELECT * FRO... " />
-                <marker date="1457627610760" expanded="true" signature="205:242" placeholder="SELECT * FRO... karyawan" />
-                <marker date="1457627610760" expanded="true" signature="564:624" placeholder="SELECT MAX(N... karyawan" />
-                <marker date="1457627610760" expanded="true" signature="945:1032" placeholder="UPDATE kenda... " />
-                <marker date="1457627610760" expanded="true" signature="1260:1459" placeholder="INSERT INTO kendaraan... " />
-                <marker date="1457627610760" expanded="true" signature="1260:1482" placeholder="INSERT INTO kendaraan... " />
-                <marker date="1457627610760" expanded="true" signature="1858:2004" placeholder="insert into sopir... " />
-                <marker date="1457627610760" expanded="true" signature="2252:2419" placeholder="INSERT INTO pemilik... " />
-                <marker date="1457627610760" expanded="true" signature="2417:2419" placeholder="INSERT INTO pemilik... " />
-                <marker date="1457627610760" expanded="true" signature="2666:2744" placeholder="UPDATE merk " />
-                <marker date="1457627610760" expanded="true" signature="2872:2932" placeholder="INSERT INTO merk... " />
-                <marker date="1457627610760" expanded="true" signature="3065:3141" placeholder="UPDATE type " />
-                <marker date="1457627610760" expanded="true" signature="3269:3329" placeholder="INSERT INTO type... " />
+                <marker date="1457631729806" expanded="true" signature="205:218" placeholder="SELECT * FRO... " />
+                <marker date="1457631729806" expanded="true" signature="205:242" placeholder="SELECT * FRO... karyawan" />
+                <marker date="1457631729806" expanded="true" signature="564:624" placeholder="SELECT MAX(N... karyawan" />
+                <marker date="1457631729806" expanded="true" signature="945:1032" placeholder="UPDATE kenda... " />
+                <marker date="1457631729806" expanded="true" signature="1260:1459" placeholder="INSERT INTO kendaraan... " />
+                <marker date="1457631729806" expanded="true" signature="1260:1482" placeholder="INSERT INTO kendaraan... " />
+                <marker date="1457631729806" expanded="true" signature="1858:2004" placeholder="insert into sopir... " />
+                <marker date="1457631729806" expanded="true" signature="2252:2419" placeholder="INSERT INTO pemilik... " />
+                <marker date="1457631729806" expanded="true" signature="2417:2419" placeholder="INSERT INTO pemilik... " />
+                <marker date="1457631729806" expanded="true" signature="2666:2744" placeholder="UPDATE merk " />
+                <marker date="1457631729806" expanded="true" signature="2872:2932" placeholder="INSERT INTO merk... " />
+                <marker date="1457631729806" expanded="true" signature="3065:3141" placeholder="UPDATE type " />
+                <marker date="1457631729806" expanded="true" signature="3269:3329" placeholder="INSERT INTO type... " />
               </folding>
             </state>
           </provider>
@@ -332,10 +318,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile_pemilik.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="profile_pemilik.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/profile_pemilik.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.383978">
+            <state vertical-scroll-proportion="-22.272728">
               <caret line="168" column="87" selection-start-line="168" selection-start-column="87" selection-end-line="168" selection-end-column="87" />
               <folding />
             </state>
@@ -397,12 +383,12 @@
         <option value="$PROJECT_DIR$/config/inc_tran.php" />
         <option value="$PROJECT_DIR$/mngreservasi.php" />
         <option value="$PROJECT_DIR$/pelanggan.php" />
-        <option value="$PROJECT_DIR$/config/inc_admin.php" />
         <option value="$PROJECT_DIR$/addmobil.php" />
         <option value="$PROJECT_DIR$/config/inc_user.php" />
         <option value="$PROJECT_DIR$/test.php" />
         <option value="$PROJECT_DIR$/rprt_pemilik.php" />
         <option value="$PROJECT_DIR$/profile_pemilik.php" />
+        <option value="$PROJECT_DIR$/config/inc_admin.php" />
       </list>
     </option>
   </component>
@@ -614,7 +600,7 @@
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27168575" sideWeight="0.49394855" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1785174" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1762481" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280757" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32733223" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39770868" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1674,29 +1660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/inc_admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8461537">
-          <caret line="54" column="16" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
-          <folding>
-            <element signature="e#6#123#0#PHP" expanded="true" />
-            <marker date="1457627610760" expanded="true" signature="205:218" placeholder="SELECT * FRO... " />
-            <marker date="1457627610760" expanded="true" signature="205:242" placeholder="SELECT * FRO... karyawan" />
-            <marker date="1457627610760" expanded="true" signature="564:624" placeholder="SELECT MAX(N... karyawan" />
-            <marker date="1457627610760" expanded="true" signature="945:1032" placeholder="UPDATE kenda... " />
-            <marker date="1457627610760" expanded="true" signature="1260:1459" placeholder="INSERT INTO kendaraan... " />
-            <marker date="1457627610760" expanded="true" signature="1260:1482" placeholder="INSERT INTO kendaraan... " />
-            <marker date="1457627610760" expanded="true" signature="1858:2004" placeholder="insert into sopir... " />
-            <marker date="1457627610760" expanded="true" signature="2252:2419" placeholder="INSERT INTO pemilik... " />
-            <marker date="1457627610760" expanded="true" signature="2417:2419" placeholder="INSERT INTO pemilik... " />
-            <marker date="1457627610760" expanded="true" signature="2666:2744" placeholder="UPDATE merk " />
-            <marker date="1457627610760" expanded="true" signature="2872:2932" placeholder="INSERT INTO merk... " />
-            <marker date="1457627610760" expanded="true" signature="3065:3141" placeholder="UPDATE type " />
-            <marker date="1457627610760" expanded="true" signature="3269:3329" placeholder="INSERT INTO type... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/inc_user.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.0">
@@ -1752,9 +1715,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/profile_pemilik.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.383978">
+        <state vertical-scroll-proportion="-22.272728">
           <caret line="168" column="87" selection-start-line="168" selection-start-column="87" selection-end-line="168" selection-end-column="87" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/inc_admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47826087">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#123#0#PHP" expanded="true" />
+            <marker date="1457631729806" expanded="true" signature="205:218" placeholder="SELECT * FRO... " />
+            <marker date="1457631729806" expanded="true" signature="205:242" placeholder="SELECT * FRO... karyawan" />
+            <marker date="1457631729806" expanded="true" signature="564:624" placeholder="SELECT MAX(N... karyawan" />
+            <marker date="1457631729806" expanded="true" signature="945:1032" placeholder="UPDATE kenda... " />
+            <marker date="1457631729806" expanded="true" signature="1260:1459" placeholder="INSERT INTO kendaraan... " />
+            <marker date="1457631729806" expanded="true" signature="1260:1482" placeholder="INSERT INTO kendaraan... " />
+            <marker date="1457631729806" expanded="true" signature="1858:2004" placeholder="insert into sopir... " />
+            <marker date="1457631729806" expanded="true" signature="2252:2419" placeholder="INSERT INTO pemilik... " />
+            <marker date="1457631729806" expanded="true" signature="2417:2419" placeholder="INSERT INTO pemilik... " />
+            <marker date="1457631729806" expanded="true" signature="2666:2744" placeholder="UPDATE merk " />
+            <marker date="1457631729806" expanded="true" signature="2872:2932" placeholder="INSERT INTO merk... " />
+            <marker date="1457631729806" expanded="true" signature="3065:3141" placeholder="UPDATE type " />
+            <marker date="1457631729806" expanded="true" signature="3269:3329" placeholder="INSERT INTO type... " />
+          </folding>
         </state>
       </provider>
     </entry>
