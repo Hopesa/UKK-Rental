@@ -7,7 +7,9 @@
  */
 
 require_once('config/config.php');
-
+if (!loggedInSpc()){
+    redirect('403.php');
+}
 $newid = generateIDSopir();
 if(isset($_GET['id']) == $newid);
 {

@@ -2,17 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: Hopesa
- * Date: 06/03/2016
- * Time: 21:20
+ * Date: 10/03/2016
+ * Time: 09:57
  */
 require_once('config/config.php');
-if (!loggedInSpc()){
+if(!loggedInSpc()){
     redirect('403.php');
 }
-$outputa='';
-$outputb='';
 ?>
-    <!DOCTYPE html>
+<!DOCTYPE html>
     <html>
 
     <head>
@@ -40,67 +38,67 @@ $outputb='';
     echo $nav;
     echo $sidebar;
     ?>
-        <!--/.sidebar-->
+<!--/.sidebar-->
 
-        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-            <div class="row">
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="#">
-                            <svg class="glyph stroked home">
-                                <use xlink:href="#stroked-home"></use>
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li>
+                <a href="#">
+                    <svg class="glyph stroked home">
+                        <use xlink:href="#stroked-home"></use>
+                    </svg>
+                </a>
+            </li>
+            <li class="active">Pemilik</li>
+        </ol>
+    </div>
+    <!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Manajemen Pelanggan</h1>
+        </div>
+    </div>
+    <!--/.row-->
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-4">
+            <div class="panel panel-blue panel-widget ">
+                <a href="mngreservasi.php"><div class="row no-padding">
+                    <div class="col-sm-3 col-lg-4 widget-left">
+                        <svg class="glyph stroked chevron left">
+                            <use xlink:href="#stroked-chevron-left" />
+                        </svg>
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">Reservasi</div>
+                        <div class="text-muted">Manajemen Reservasi</div>
+                    </div>
+                </div></a>
+            </div>
+        </div>
+        <a href="tampilmobil.php">
+            <div class="col-xs-12 col-md-6 col-lg-4">
+                <div class="panel panel-orange panel-widget">
+                    <div class="row no-padding">
+                        <div class="col-sm-3 col-lg-4 widget-left">
+                            <svg class="glyph stroked chevron left">
+                                <use xlink:href="#stroked-chevron-left" />
                             </svg>
-                        </a>
-                    </li>
-                    <li class="active">Pemilik</li>
-                </ol>
-            </div>
-            <!--/.row-->
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Manajemen Pemilik</h1>
-                </div>
-            </div>
-            <!--/.row-->
-            <div class="row">
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    <div class="panel panel-blue panel-widget ">
-                        <div class="row no-padding">
-                            <div class="col-sm-3 col-lg-4 widget-left">
-                                <svg class="glyph stroked chevron left">
-                                    <use xlink:href="#stroked-chevron-left" />
-                                </svg>
-                            </div>
-                            <div class="col-sm-9 col-lg-7 widget-right">
-                                <div class="large">Setoran</div>
-                                <div class="text-muted">Manajemen Setoran</div>
-                            </div>
+                        </div>
+                        <div class="col-sm-9 col-lg-7 widget-right">
+                            <div class="large">Mobil</div>
+                            <div class="text-muted">Manajemen Mobil</div>
                         </div>
                     </div>
                 </div>
-                <a href="tampilmobil.php">
-                    <div class="col-xs-12 col-md-6 col-lg-4">
-                        <div class="panel panel-orange panel-widget">
-                            <div class="row no-padding">
-                                <div class="col-sm-3 col-lg-4 widget-left">
-                                    <svg class="glyph stroked chevron left">
-                                        <use xlink:href="#stroked-chevron-left" />
-                                    </svg>
-                                </div>
-                                <div class="col-sm-9 col-lg-7 widget-right">
-                                    <div class="large">Mobil</div>
-                                    <div class="text-muted">Manajemen Mobil</div>
-                                </div>
-                            </div>
-                        </div>
-                </a>
-            </div>
+        </a>
+    </div>
 
-            <?php
-            if(empty($_GET['action'])){
-                $outputa='';
-                $outputa.= '<div class="row">
+    <?php
+    if(empty($_GET['action'])){
+        $outputa='';
+        $outputa.= '<div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">Daftar Pemilik</div>
@@ -117,14 +115,14 @@ $outputb='';
                                 </tr>
                             </thead>
                             ';
-                echo $outputa;
-                            $sql=mysql_query('select * from pemilik') or trigger_error("Query Failed: " . mysql_error());;
-                            while($data=mysql_fetch_array($sql)){
-                                $output ='';
-                                $sqlb=mysql_query("select * from kendaraan WHERE KodePemilik='$data[KodePemilik]'");
-                                $jumlah=mysql_num_rows($sqlb);
+        echo $outputa;
+        $sql=mysql_query('select * from pemilik') or trigger_error("Query Failed: " . mysql_error());;
+        while($data=mysql_fetch_array($sql)){
+            $output ='';
+            $sqlb=mysql_query("select * from kendaraan WHERE KodePemilik='$data[KodePemilik]'");
+            $jumlah=mysql_num_rows($sqlb);
 
-                                $output .='<tr>
+            $output .='<tr>
                                 <td>'.$data['NmPemilik'].'</td>
                                 <td>'.$data['AlamatPemilik'].'</td>
                                 <td>'.$data['TelpPemilik'].'</td>
@@ -132,10 +130,10 @@ $outputb='';
                                 <td><a href="pemilik.php?id='.$data['KodePemilik'].'&action=edit" style="height:50px">Edit </a><a href="deletepemilik.php?id='.$data['KodePemilik'].'"> Delete</a></td>
                             </tr>
                             ';
-                                echo $output;
-                                $output = '';}
-$outputb ='';
-                $outputb.='
+            echo $output;
+            $output = '';}
+        $outputb ='';
+        $outputb.='
         </table>
 
         <a href="pemilik.php?action=add">Add Pemilik</a>
@@ -144,33 +142,33 @@ $outputb ='';
 
     </div>
     </div>';
-                echo $outputb;
+        echo $outputb;
+    }
+    else if($_GET['action']=='edit'){
+        if(isset($_GET['id']));
+        {
+            $query = mysql_query("Select * from pemilik WHERE KodePemilik = '$_GET[id]'");
+            $data = mysql_fetch_array($query);
+        }
+        if(isset($_POST['btn-edit']))
+        {
+            $ktp = $_POST['ktp'];
+            $alamat = $_POST['alamat'];
+            $telepon = $_POST['telp'];
+
+            if(edit_pemilik($ktp,$alamat,$telepon))
+            {
+                $output = 'Success';
             }
-            else if($_GET['action']=='edit'){
-                if(isset($_GET['id']));
-                {
-                    $query = mysql_query("Select * from pemilik WHERE KodePemilik = '$_GET[id]'");
-                    $data = mysql_fetch_array($query);
-                }
-                if(isset($_POST['btn-edit']))
-                {
-                    $ktp = $_POST['ktp'];
-                    $alamat = $_POST['alamat'];
-                    $telepon = $_POST['telp'];
+            else
+            {
+                $output = "Wrong Details !";
+                echo $output;
+                exit; //Stop
+            }
+        }
 
-                    if(edit_pemilik($ktp,$alamat,$telepon))
-                    {
-                        $output = 'Success';
-                    }
-                    else
-                    {
-                        $output = "Wrong Details !";
-                        echo $output;
-                        exit; //Stop
-                    }
-                }
-
-                $outputa.=' <div class="row">
+        $outputa.=' <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading"></div>
@@ -238,30 +236,30 @@ $outputb ='';
 
         </div>
     </div>';
-                echo $outputa;
+        echo $outputa;
+    }
+    else {
+        if(isset($_POST['btn-submit']))
+        {
+            $pemilik = $_POST['nama'];
+            $kode = $_POST['ktp'];
+            $telepon = $_POST['telp'];
+            $alamat = $_POST['alamat'];
+
+            if(add_Pemilik($pemilik,$kode,$telepon,$alamat))
+            {
+                $output = 'Success';
+                echo $output;
             }
-            else {
-                if(isset($_POST['btn-submit']))
-                {
-                    $pemilik = $_POST['nama'];
-                    $kode = $_POST['ktp'];
-                    $telepon = $_POST['telp'];
-                    $alamat = $_POST['alamat'];
+            else
+            {
+                $output = "Wrong Details !";
+                echo $output;
+                exit; //Stop
+            }
+        }
 
-                    if(add_Pemilik($pemilik,$kode,$telepon,$alamat))
-                    {
-                        $output = 'Success';
-                        echo $output;
-                    }
-                    else
-                    {
-                        $output = "Wrong Details !";
-                        echo $output;
-                        exit; //Stop
-                    }
-                }
-
-                $outputa.=' <div class="row">
+        $outputa.=' <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Tambah Pemilik</div>
@@ -324,40 +322,40 @@ $outputb ='';
 
         </div>
     </div>';
-                echo $outputa;
-            }
-       ?>
-                <!--/.row-->
+        echo $outputa;
+    }
+    ?>
+    <!--/.row-->
 
-                <!--/.row-->
+    <!--/.row-->
 
 
-        </div>
-        <!--/.main-->
+</div>
+<!--/.main-->
 
-        <script src="js/jquery-1.11.1.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/chart.min.js"></script>
-        <script src="js/chart-data.js"></script>
-        <script src="js/easypiechart.js"></script>
-        <script src="js/easypiechart-data.js"></script>
-        <script src="js/bootstrap-datepicker.js"></script>
-        <script src="js/bootstrap-table.js"></script>
-        <script>
-            ! function ($) {
-                $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
-                    $(this).find('em:first').toggleClass("glyphicon-minus");
-                });
-                $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-            }(window.jQuery);
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/chart.min.js"></script>
+<script src="js/chart-data.js"></script>
+<script src="js/easypiechart.js"></script>
+<script src="js/easypiechart-data.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/bootstrap-table.js"></script>
+<script>
+    ! function ($) {
+        $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+            $(this).find('em:first').toggleClass("glyphicon-minus");
+        });
+        $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+    }(window.jQuery);
 
-            $(window).on('resize', function () {
-                if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-            })
-            $(window).on('resize', function () {
-                if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-            })
-        </script>
-    </body>
+    $(window).on('resize', function () {
+        if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+    })
+    $(window).on('resize', function () {
+        if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+    })
+</script>
+</body>
 
-    </html>
+</html>

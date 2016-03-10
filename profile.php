@@ -1,7 +1,7 @@
 <?php
 include_once 'config/config.php';
 error_reporting(0);
-if(loggedin()=="")
+if(!loggedin())
 {
     redirect('login_pelanggan.php');
 }
@@ -10,17 +10,17 @@ if(loggedin()=="")
 
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <!--[if IE]>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <![endif]-->
-    <title>User Profile</title>
-    <!-- BOOTSTRAP STYLE SHEET -->
-    <link href="style/bootstrap.css" rel="stylesheet" />
-    <!-- FONT-AWESOME STYLE SHEET FOR BEAUTIFUL ICONS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/datepicker3.css" rel="stylesheet">
+    <link href="css/bootstrap-table.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!--Icons-->
+    <script src="js/lumino.glyphs.js"></script>
+
+    <!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
     <link href="style/font-awesome.css" rel="stylesheet" />
      <!-- CUSTOM STYLE CSS -->
     <style type="text/css">
@@ -53,111 +53,204 @@ if(loggedin()=="")
     </style>
 </head>
 <body>
-    <div class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Profile</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav ">
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="historypelanggan.php">HISTORY</a></li>
-                    <li><a href="tampilmobiluser.php">MOBIL</a></li>
-                    <li><a href="profile.php?logout">LOGOUT</a></li>
-                </ul>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><span>Pelanggan</span>Rental</a>
+            <ul class="user-menu">
+                <li class="dropdown pull-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <svg class="glyph stroked male-user">
+                            <use xlink:href="#stroked-male-user"></use>
+                        </svg> <?php echo $_SESSION['nama']; ?> <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="profile.php?logout">
+                                <svg class="glyph stroked male-user">
+                                    <use xlink:href="#stroked-male-user"></use>
+                                </svg> Profile</a>
+                        </li>
+                        <li>
+                        <li>
+                            <a href="profile.php?logout">
+                                <svg class="glyph stroked cancel">
+                                    <use xlink:href="profile.php?logout"></use>
+                                </svg> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+    <form role="search">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+        </div>
+    </form>
+    <ul class="nav menu">
+        <li class="active">
+            <a href="profile.php">
+                <svg class="glyph stroked home">
+                    <use xlink:href="#stroked-home" />
+                </svg>
+                Dashboard</a>
+        </li>
+
+        <li><a href="historypelanggan.php">History Pemesanan</a></li>
+        <li><a href="tampilmobiluser.php">Pesan Mobil</a></li>
+
+
+
+
+        <li role="presentation" class="divider"></li>
+        <li>
+            <a href="profile.php?logout">
+                <svg class="glyph stroked male-user">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-male-user"></use>
+                </svg>Logout</a>
+        </li>
+    </ul>
+
+</div>
+<!--/.sidebar-->
+
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li>
+                <a href="#">
+                    <svg class="glyph stroked home">
+                        <use xlink:href="#stroked-home"></use>
+                    </svg>
+                </a>
+            </li>
+            <li class="active">Mobil</li>
+        </ol>
+    </div>
+    <!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Profil</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <form class="col-md-8" method="post" action=profile.php?update>
+                            <label>Username</label>
+                            <input type="text" name="username" class="form-control" value="<?php echo $_SESSION['username']; ?>" readonly>
+                            <label>Nama</label>
+                            <input type="text" name="nama" class="form-control" value="<?php echo $_SESSION['nama']; ?>">
+                            <label>Alamat</label>
+                            <input type="text" name="alamat" class="form-control" value="<?php echo $_SESSION['alamat']; ?>">
+                            <label>No. Telp</label>
+                            <input type="text" name="telp" class="form-control" value="<?php echo $_SESSION['telp']; ?>">
+                            <br>
+                            <button name="data" class="btn btn-success">Update Details</button>
+                            <br /><br/>
+                    </div>
+                    <div class="col-md-8 no-padding">
+                        <div class="form-group col-md-8">
+                            <h3>Change YOur Password</h3>
+                            <br />
+                            <label>Enter Old Password</label>
+                            <input name="oldpass" type="password" class="form-control">
+                            <label>Enter New Password</label>
+                            <input name="newpass" type="password" class="form-control">
+                            <label>Confirm New Password</label>
+                            <input name="renewpass" type="password" class="form-control" />
+                            <br>
+                            <button name="pass" class="btn btn-warning">Change Password</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- ROW END -->
+                <?php
+                if(isset($_GET['logout'])) {
+                    logoutUser();
+                    alert("Anda Terlah Berhasil Logout");
+                    direct("profile.php ");
+                }
+
+                if(isset($_GET['update'])) {
+
+                    $nama = $_POST['nama'];
+                    $alamat = $_POST['alamat'];
+                    $telp = $_POST['telp'];
+                    $oldpass = $_POST['oldpass'];
+                    $newpass = $_POST['newpass'];
+                    $renewpass = $_POST['renewpass'];
+
+                    if(isset($_POST['data'])){
+                        if ((updatePelanngan($nama, $alamat, $telp)) == true) {
+                            direct("profile.php");
+                        }
+                        else
+                            echo "gagal mengedit";
+                    }
+                    elseif(isset($_POST['pass'])){
+                        if ((updatePassPelanggan($oldpass)) == true) {
+                            if($newpass==$renewpass) {
+                                if(strlen($newpass) >= 6)
+                                {
+                                    direct("profile.php");
+                                }
+                                else
+                                    echo "Password must be atleast 6 characters";
+                            }
+                            else
+                                echo "password anda tidak cocok";
+                        }
+                        else
+                            echo "password lama anda s  alah";
+                    }
+                }
+                ?>
+                    </div>
             </div>
 
         </div>
     </div>
-    <!-- NAVBAR CODE END -->
+    <!--/.row-->
+
+    <!--/.row-->
 
 
-    <div class="container">
-        <section style="padding-bottom: 50px; padding-top: 50px;">
-            <div class="row">
-                <form class="col-md-4" method="post" action=profile.php?update>
-                    <label>Username</label>
-                    <input type="text" name="username" class="form-control" value="<?php echo $_SESSION['username']; ?>" readonly>
-                    <label>Nama</label>
-                    <input type="text" name="nama" class="form-control" value="<?php echo $_SESSION['nama']; ?>">
-                    <label>Alamat</label>
-                    <input type="text" name="alamat" class="form-control" value="<?php echo $_SESSION['alamat']; ?>">
-                    <label>No. Telp</label>
-                    <input type="text" name="telp" class="form-control" value="<?php echo $_SESSION['telp']; ?>">
-                    <br>
-                    <button name="data" class="btn btn-success">Update Details</button>
-                    <br /><br/>
-                </div>
-                <div class="col-md-8">
-                    <div class="alert alert-info">
-                        <h2>User : <?php echo $_SESSION['username']?></h2>
-                        <h4>User Profile </h4>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <h3>Change YOur Password</h3>
-                        <br />
-                        <label>Enter Old Password</label>
-                        <input name="oldpass" type="password" class="form-control">
-                        <label>Enter New Password</label>
-                        <input name="newpass" type="password" class="form-control">
-                        <label>Confirm New Password</label>
-                        <input name="renewpass" type="password" class="form-control" />
-                        <br>
-                        <button name="pass" class="btn btn-warning">Change Password</button>
-                    </div>
-                </div>
-            </div>
-            <!-- ROW END -->
-            <?php
-            if(isset($_GET['logout'])) {
-                logoutUser();
-                alert("Anda Terlah Berhasil Logout");
-                direct("profile.php ");
-            }
+</div>
+<!--/.main-->
 
-            if(isset($_GET['update'])) {
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/chart.min.js"></script>
+<script src="js/chart-data.js"></script>
+<script src="js/easypiechart.js"></script>
+<script src="js/easypiechart-data.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/bootstrap-table.js"></script>
+<script>
+    ! function ($) {
+        $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+            $(this).find('em:first').toggleClass("glyphicon-minus");
+        });
+        $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+    }(window.jQuery);
 
-                $nama = $_POST['nama'];
-                $alamat = $_POST['alamat'];
-                $telp = $_POST['telp'];
-                $oldpass = $_POST['oldpass'];
-                $newpass = $_POST['newpass'];
-                $renewpass = $_POST['renewpass'];
-
-                if(isset($_POST['data'])){
-                    if ((updatePelanngan($nama, $alamat, $telp)) == true) {
-                        direct("profile.php");
-                    }
-                    else
-                        echo "gagal mengedit";
-                }
-                elseif(isset($_POST['pass'])){
-                    if ((updatePassPelanggan($oldpass)) == true) {
-                        if($newpass==$renewpass) {
-                            if(strlen($newpass) >= 6)
-                            {
-                                direct("profile.php");
-                            }
-                            else
-                                echo "Password must be atleast 6 characters";
-                        }
-                        else
-                            echo "password anda tidak cocok";
-                    }
-                    else
-                        echo "password lama anda s  alah";
-                }
-            }
-            ?>
-
-
-        </section>
-        <!-- SECTION END -->
-    </div>
+    $(window).on('resize', function () {
+        if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+    });
+    $(window).on('resize', function () {
+        if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+    })
+</script>
 </body>
 </html>

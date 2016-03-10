@@ -1,7 +1,5 @@
 <?php
 
-
-
 function registerkaryawan($pUsername, $pPassword, $type, $kode, $NmKaryawan, $AlamatKaryawan, $TelpKaryawan) { //User Account, Not that "Account"
     // First check we have data passed in.
     if (!empty($pUsername) && !empty($pPassword)) {
@@ -64,16 +62,25 @@ function loggedIn() {
     }
     return false;
 }
+function loggedInSpc() {
+    // check both loggedin and username to verify admin.
+    if (isset($_SESSION['ptgs']) && isset($_SESSION['username'])) {
+        return true;
+    }
+    return false;
+}
 function loginKaryawan($pUsername, $pPassword) {
     // See if the username and password are valid.
-    $sql = "SELECT UserName FROM login WHERE UserName = '" . mysql_real_escape_string($pUsername) . "' AND Password = '" . md5($pPassword). "' LIMIT 1";
+    $sql = "SELECT * FROM login WHERE UserName = '" . mysql_real_escape_string($pUsername) . "' AND Password = '" . md5($pPassword). "' LIMIT 1";
     $query = mysql_query($sql) or trigger_error("Query Failed: " . mysql_error());
     // If one row was returned, the user was logged in! 
     if (mysql_num_rows($query) == 1) {
-        $row = mysql_fetch_assoc($query);
-        $_SESSION['username'] = $row['UserName'];
+        $row = mysql_fetch_array($query);
         $_SESSION['nik']= $row['NIK'];
+        $_SESSION['username'] = $row['UserName'];
+        $_SESSION['tipe']= $row['TypeUser'];
         $_SESSION['loggedin'] = true;
+        $_SESSION['ptgs'] = true;
         return true;
     }
     else
@@ -87,7 +94,6 @@ function loginPelanggan($pUsername, $pPassword) {
     // If one row was returned, the user was logged in! 
     if (mysql_num_rows($query) == 1) {
         $row = mysql_fetch_assoc($query);
-
         $sql1 = "select * from pelanggan where NoKTP='".$row['NoKTP']."' ";
         $sql2 = mysql_query($sql1);
         $slc = mysql_fetch_array($sql2);

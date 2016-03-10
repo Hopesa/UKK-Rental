@@ -51,21 +51,18 @@ function edit_kendaraan($tarif,$desc,$plat){
     return false;
 }
 
-function add_kendaraan($plat,$tahun,$tarif,$merk,$tipe,$mobil,$desc){
-    $query = mysql_query("SELECT * FROM type WHERE NmType = '$tipe';");
-    $idtype = mysql_fetch_array($query);
-    $query = mysql_query("SELECT * FROM merk WHERE NmMerk = '$merk';");
-    $idmerk = mysql_fetch_array($query);
-    $status = 'Baru';
-    $sql = "INSERT INTO kendaraan (`NoPlat`, `NamaMobil`, `Tahun`, `TarifPerJam`, `StatusRental`, `IDType`, `KodeMerk`)
-VALUES  ('$plat','$mobil','$tahun','$tarif','$status','$idtype[IDType]','$idmerk[KodeMerk]');";
-    $query = mysql_query($sql) or die(mysql_error());
+function add_kendaraan($plat,$tahun,$tarif,$merk,$tipe,$mobil,$desc,$kode){
+    $status = 1;
+    $sql = "INSERT INTO kendaraan (`NoPlat`, `Nama Mobil`, `Tahun`, `TarifPerJam`, `StatusRental`, `IDType`, `KodeMerk`,`KodePemilik`, `Deskripsi`)
+VALUES  ('$plat','$mobil','$tahun','$tarif','$status','$tipe','$merk','$kode','$desc');";
+    $query = mysql_query($sql) or die (mysql_error());
 
     if ($query) {
         return true;
     }
     return false;
 }
+
 
 
 function delete_vehicle($license){
@@ -89,10 +86,10 @@ VALUES  ('$id_sopir','$nama','$alamat','$telp','$nosim','$tarif')";
 function delete_driver($id_driver){
 }
 
-function add_pemilik($pemilik,$kode,$telepon,$alamat,$plat){
+function add_pemilik($pemilik,$kode,$telepon,$alamat){
 
-    $sql = "INSERT INTO pemilik (KodePemilik, NmPemilik, AlamatPemilik, TelpPemilik, NoPlat)
-VALUES ('$kode','$pemilik','$alamat','$telepon','$plat')";
+    $sql = "INSERT INTO pemilik (KodePemilik, NmPemilik, AlamatPemilik, TelpPemilik)
+VALUES ('$kode','$pemilik','$alamat','$telepon')";
     $query = mysql_query($sql) or die(mysql_error());
 
     if ($query) {
@@ -105,5 +102,32 @@ function delete_pemilik(){
 }
 function Setoran_pemilik(){
 }
-
+function edit_merk($kode,$nama,$ket){
+    $query = mysql_query("UPDATE merk SET NmMerk = '$nama', Keterangan = '$ket' WHERE KodeMerk = '$kode'");
+    if ($query){
+        return true;
+    }
+    return false;
+}
+function tambah_merk($nama,$ket){
+    $query = mysql_query("INSERT INTO merk (NmMerk,Keterangan) VALUES ('$nama','$ket');");
+    if ($query){
+        return true;
+    }
+    return false;
+}
+function edit_tipe($kode,$nama,$ket){
+    $query = mysql_query("UPDATE type SET NmType = '$nama', Keterangan = '$ket' WHERE IDType = '$kode'");
+    if ($query){
+        return true;
+    }
+    return false;
+}
+function tambah_tipe($nama,$ket){
+    $query = mysql_query("INSERT INTO type (NmType,Keterangan) VALUES ('$nama','$ket');");
+    if ($query){
+        return true;
+    }
+    return false;
+}
 

@@ -57,447 +57,478 @@
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
       </column>
-      <column id="24" parent="4" name="Tahun">
+      <column id="24" parent="4" name="Nama Mobil">
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)</data-type>
+      </column>
+      <column id="25" parent="4" name="Tahun">
         <mandatory>1</mandatory>
         <data-type>varchar(4)</data-type>
       </column>
-      <column id="25" parent="4" name="TarifPerJam">
+      <column id="26" parent="4" name="TarifPerJam">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="26" parent="4" name="StatusRental">
+      <column id="27" parent="4" name="StatusRental">
         <mandatory>1</mandatory>
         <data-type>varchar(1)</data-type>
       </column>
-      <column id="27" parent="4" name="IDType">
+      <column id="28" parent="4" name="IDType">
         <mandatory>1</mandatory>
-        <data-type>varchar(5)</data-type>
+        <data-type>int(5)</data-type>
       </column>
-      <index id="28" parent="4" name="IDType">
+      <column id="29" parent="4" name="KodeMerk">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="30" parent="4" name="KodePemilik">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="31" parent="4" name="Deskripsi">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <index id="32" parent="4" name="IDType">
         <columns>IDType</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="29" parent="4" name="PRIMARY">
-        <columns>NoPlat</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="30" parent="4" name="kendaraan_ibfk_1">
-        <columns>IDType</columns>
-        <ref-key>~.type.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="31" parent="5" name="UserName">
-        <mandatory>1</mandatory>
-        <data-type>varchar(10)</data-type>
-      </column>
-      <column id="32" parent="5" name="Password">
-        <mandatory>1</mandatory>
-        <data-type>varchar(100)</data-type>
-      </column>
-      <column id="33" parent="5" name="TypeUser">
-        <mandatory>1</mandatory>
-        <data-type>varchar(10)</data-type>
-      </column>
-      <column id="34" parent="5" name="IDUser">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <index id="35" parent="5" name="IDUser">
-        <columns>IDUser</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="36" parent="5" name="PRIMARY">
-        <columns>UserName</columns>
-        <primary>1</primary>
-      </key>
-      <column id="37" parent="6" name="id_session">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="38" parent="6" name="NoKTP">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="39" parent="6" name="Username">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="40" parent="6" name="Password">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <index id="41" parent="6" name="NoKTP">
-        <columns>NoKTP</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="42" parent="6" name="NoKTP_2">
-        <columns>NoKTP</columns>
-        <desc-columns></desc-columns>
-        <unique>1</unique>
-      </index>
-      <key id="43" parent="6" name="NoKTP_2">
-        <columns>NoKTP</columns>
-        <underlying-index>NoKTP_2</underlying-index>
-      </key>
-      <key id="44" parent="6" name="PRIMARY">
-        <columns>id_session</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="45" parent="6" name="login_pelanggan_ibfk_1">
-        <columns>NoKTP</columns>
-        <ref-key>~.pelanggan.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="46" parent="7" name="KodeMerk">
-        <mandatory>1</mandatory>
-        <data-type>varchar(5)</data-type>
-      </column>
-      <column id="47" parent="7" name="NmMerk">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="48" parent="7" name="Keterangan">
-        <mandatory>1</mandatory>
-        <data-type>text</data-type>
-      </column>
-      <key id="49" parent="7" name="PRIMARY">
+      <index id="33" parent="4" name="KodeMerk">
         <columns>KodeMerk</columns>
-        <primary>1</primary>
-      </key>
-      <column id="50" parent="8" name="NoKTP">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="51" parent="8" name="NamaPel">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="52" parent="8" name="AlamatPel">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="53" parent="8" name="TelpPel">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <key id="54" parent="8" name="PRIMARY">
-        <columns>NoKTP</columns>
-        <primary>1</primary>
-      </key>
-      <column id="55" parent="9" name="KodePemilik">
-        <mandatory>1</mandatory>
-        <data-type>varchar(5)</data-type>
-      </column>
-      <column id="56" parent="9" name="NmPemilik">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="57" parent="9" name="AlamatPemilik">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="58" parent="9" name="TelpPemilik">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="59" parent="9" name="NoPlat">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <index id="60" parent="9" name="NoPlat">
-        <columns>NoPlat</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="61" parent="9" name="PRIMARY">
-        <columns>KodePemilik</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="62" parent="9" name="pemilik_ibfk_1">
-        <columns>NoPlat</columns>
-        <ref-key>~.kendaraan.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="63" parent="10" name="KodeService">
-        <mandatory>1</mandatory>
-        <data-type>varchar(5)</data-type>
-      </column>
-      <column id="64" parent="10" name="TglService">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="65" parent="10" name="BiayaService">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="66" parent="10" name="NoPlat">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="67" parent="10" name="IDJenisService">
-        <mandatory>1</mandatory>
-        <data-type>varchar(5)</data-type>
-      </column>
-      <index id="68" parent="10" name="IDJenisService">
-        <columns>IDJenisService</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="69" parent="10" name="NoPlat">
-        <columns>NoPlat</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="70" parent="10" name="PRIMARY">
-        <columns>KodeService</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="71" parent="10" name="service_ibfk_1">
-        <columns>NoPlat</columns>
-        <ref-key>~.kendaraan.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="72" parent="10" name="service_ibfk_2">
-        <columns>IDJenisService</columns>
-        <ref-key>~.jenisservice.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="73" parent="11" name="NoSetoran">
-        <mandatory>1</mandatory>
-        <data-type>varchar(5)</data-type>
-      </column>
-      <column id="74" parent="11" name="TglSetoran">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="75" parent="11" name="Jumlah">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="76" parent="11" name="KodePemilik">
-        <mandatory>1</mandatory>
-        <data-type>varchar(5)</data-type>
-      </column>
-      <column id="77" parent="11" name="NIK">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <index id="78" parent="11" name="KodePemilik">
+      <index id="34" parent="4" name="KodePemilik">
         <columns>KodePemilik</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="79" parent="11" name="NIK">
-        <columns>NIK</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="80" parent="11" name="PRIMARY">
-        <columns>NoSetoran</columns>
+      <key id="35" parent="4" name="PRIMARY">
+        <columns>NoPlat</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="81" parent="11" name="setoran_ibfk_2">
-        <columns>NIK</columns>
-        <ref-key>~.karyawan.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="82" parent="11" name="setoran_ibfk_3">
+      <foreign-key id="36" parent="4" name="kendaraan_ibfk_3">
         <columns>KodePemilik</columns>
         <ref-key>~.pemilik.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="83" parent="12" name="IDSopir">
-        <mandatory>1</mandatory>
-        <data-type>varchar(5)</data-type>
-      </column>
-      <column id="84" parent="12" name="NmSopir">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="85" parent="12" name="AlamatSopir">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="86" parent="12" name="TelpSopir">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="87" parent="12" name="NoSIM">
-        <mandatory>1</mandatory>
-        <data-type>varchar(30)</data-type>
-      </column>
-      <column id="88" parent="12" name="TarifPerJam">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <key id="89" parent="12" name="PRIMARY">
-        <columns>IDSopir</columns>
-        <primary>1</primary>
-      </key>
-      <column id="90" parent="13" name="NoTransaksi">
-        <mandatory>1</mandatory>
-        <data-type>varchar(5)</data-type>
-      </column>
-      <column id="91" parent="13" name="TglPesan">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="92" parent="13" name="TglPinjam">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="93" parent="13" name="JamPinjam">
-        <mandatory>1</mandatory>
-        <data-type>time</data-type>
-      </column>
-      <column id="94" parent="13" name="TglKembaliRencana">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="95" parent="13" name="JamKembaliRencana">
-        <mandatory>1</mandatory>
-        <data-type>time</data-type>
-      </column>
-      <column id="96" parent="13" name="TglKembaliReal">
-        <mandatory>1</mandatory>
-        <data-type>date</data-type>
-      </column>
-      <column id="97" parent="13" name="JamKembaliReal">
-        <mandatory>1</mandatory>
-        <data-type>time</data-type>
-      </column>
-      <column id="98" parent="13" name="Denda">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="99" parent="13" name="KilometerPinjam">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="100" parent="13" name="KilometerKembali">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="101" parent="13" name="BBMPinjam">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="102" parent="13" name="BBMKembali">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="103" parent="13" name="KondisiMobilPinjam">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="104" parent="13" name="KondisiMobilKembali">
-        <mandatory>1</mandatory>
-        <data-type>varchar(50)</data-type>
-      </column>
-      <column id="105" parent="13" name="Kerusakan">
-        <mandatory>1</mandatory>
-        <data-type>varchar(225)</data-type>
-      </column>
-      <column id="106" parent="13" name="BiayaKerusakan">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="107" parent="13" name="BiayaBBM">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="108" parent="13" name="NoKTP">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="109" parent="13" name="NIK">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="110" parent="13" name="IDSopir">
-        <mandatory>1</mandatory>
-        <data-type>varchar(5)</data-type>
-      </column>
-      <column id="111" parent="13" name="NoPlat">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <index id="112" parent="13" name="IDSopir">
-        <columns>IDSopir</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="113" parent="13" name="NIK">
-        <columns>NIK</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="114" parent="13" name="NoKTP">
-        <columns>NoKTP</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="115" parent="13" name="NoPlat">
-        <columns>NoPlat</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="116" parent="13" name="PRIMARY">
-        <columns>NoTransaksi</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="117" parent="13" name="transaksisewa_ibfk_1">
-        <columns>NoKTP</columns>
-        <ref-key>~.pelanggan.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="118" parent="13" name="transaksisewa_ibfk_2">
-        <columns>NIK</columns>
-        <ref-key>~.karyawan.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="119" parent="13" name="transaksisewa_ibfk_3">
-        <columns>IDSopir</columns>
-        <ref-key>~.sopir.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="120" parent="13" name="transaksisewa_ibfk_4">
-        <columns>NoPlat</columns>
-        <ref-key>~.kendaraan.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="121" parent="14" name="IDType">
-        <mandatory>1</mandatory>
-        <data-type>varchar(5)</data-type>
-      </column>
-      <column id="122" parent="14" name="NmType">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-      </column>
-      <column id="123" parent="14" name="KodeMerk">
-        <mandatory>1</mandatory>
-        <data-type>varchar(5)</data-type>
-      </column>
-      <column id="124" parent="14" name="Keterangan">
-        <mandatory>1</mandatory>
-        <data-type>text</data-type>
-      </column>
-      <index id="125" parent="14" name="KodeMerk">
-        <columns>KodeMerk</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="126" parent="14" name="PRIMARY">
-        <columns>IDType</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="127" parent="14" name="type_ibfk_1">
+      <foreign-key id="37" parent="4" name="kendaraan_ibfk_4">
         <columns>KodeMerk</columns>
         <ref-key>~.merk.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
+      <foreign-key id="38" parent="4" name="kendaraan_ibfk_5">
+        <columns>IDType</columns>
+        <ref-key>~.type.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="39" parent="5" name="UserName">
+        <mandatory>1</mandatory>
+        <data-type>varchar(10)</data-type>
+      </column>
+      <column id="40" parent="5" name="Password">
+        <mandatory>1</mandatory>
+        <data-type>varchar(100)</data-type>
+      </column>
+      <column id="41" parent="5" name="TypeUser">
+        <mandatory>1</mandatory>
+        <data-type>varchar(10)</data-type>
+      </column>
+      <column id="42" parent="5" name="NIK">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <index id="43" parent="5" name="NIK">
+        <columns>NIK</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="44" parent="5" name="PRIMARY">
+        <columns>UserName</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="45" parent="5" name="login_ibfk_1">
+        <columns>NIK</columns>
+        <ref-key>~.karyawan.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="46" parent="6" name="id_session">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="47" parent="6" name="NoKTP">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="48" parent="6" name="Username">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="49" parent="6" name="Password">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <index id="50" parent="6" name="NoKTP">
+        <columns>NoKTP</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="51" parent="6" name="NoKTP_2">
+        <columns>NoKTP</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="52" parent="6" name="NoKTP_2">
+        <columns>NoKTP</columns>
+        <underlying-index>NoKTP_2</underlying-index>
+      </key>
+      <key id="53" parent="6" name="PRIMARY">
+        <columns>id_session</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="54" parent="6" name="login_pelanggan_ibfk_1">
+        <columns>NoKTP</columns>
+        <ref-key>~.pelanggan.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="55" parent="7" name="KodeMerk">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="56" parent="7" name="NmMerk">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="57" parent="7" name="Keterangan">
+        <mandatory>1</mandatory>
+        <data-type>text</data-type>
+      </column>
+      <index id="58" parent="7" name="NmMerk">
+        <columns>NmMerk</columns>
+        <desc-columns></desc-columns>
+        <unique>1</unique>
+      </index>
+      <key id="59" parent="7" name="NmMerk">
+        <columns>NmMerk</columns>
+        <underlying-index>NmMerk</underlying-index>
+      </key>
+      <key id="60" parent="7" name="PRIMARY">
+        <columns>KodeMerk</columns>
+        <primary>1</primary>
+      </key>
+      <column id="61" parent="8" name="NoKTP">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="62" parent="8" name="NamaPel">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="63" parent="8" name="AlamatPel">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="64" parent="8" name="TelpPel">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <key id="65" parent="8" name="PRIMARY">
+        <columns>NoKTP</columns>
+        <primary>1</primary>
+      </key>
+      <column id="66" parent="9" name="KodePemilik">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="67" parent="9" name="NmPemilik">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="68" parent="9" name="AlamatPemilik">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="69" parent="9" name="TelpPemilik">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <key id="70" parent="9" name="PRIMARY">
+        <columns>KodePemilik</columns>
+        <primary>1</primary>
+      </key>
+      <column id="71" parent="10" name="KodeService">
+        <mandatory>1</mandatory>
+        <data-type>varchar(5)</data-type>
+      </column>
+      <column id="72" parent="10" name="TglService">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="73" parent="10" name="BiayaService">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="74" parent="10" name="NoPlat">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="75" parent="10" name="IDJenisService">
+        <mandatory>1</mandatory>
+        <data-type>varchar(5)</data-type>
+      </column>
+      <index id="76" parent="10" name="IDJenisService">
+        <columns>IDJenisService</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="77" parent="10" name="NoPlat">
+        <columns>NoPlat</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="78" parent="10" name="PRIMARY">
+        <columns>KodeService</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="79" parent="10" name="service_ibfk_1">
+        <columns>NoPlat</columns>
+        <ref-key>~.kendaraan.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="80" parent="10" name="service_ibfk_2">
+        <columns>IDJenisService</columns>
+        <ref-key>~.jenisservice.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="81" parent="11" name="NoSetoran">
+        <mandatory>1</mandatory>
+        <data-type>varchar(5)</data-type>
+      </column>
+      <column id="82" parent="11" name="TglSetoran">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="83" parent="11" name="Jumlah">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="84" parent="11" name="KodePemilik">
+        <mandatory>1</mandatory>
+        <data-type>varchar(5)</data-type>
+      </column>
+      <column id="85" parent="11" name="NIK">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <index id="86" parent="11" name="KodePemilik">
+        <columns>KodePemilik</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="87" parent="11" name="NIK">
+        <columns>NIK</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="88" parent="11" name="PRIMARY">
+        <columns>NoSetoran</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="89" parent="11" name="setoran_ibfk_2">
+        <columns>NIK</columns>
+        <ref-key>~.karyawan.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="90" parent="11" name="setoran_ibfk_3">
+        <columns>KodePemilik</columns>
+        <ref-key>~.pemilik.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="91" parent="12" name="IDSopir">
+        <mandatory>1</mandatory>
+        <data-type>varchar(5)</data-type>
+      </column>
+      <column id="92" parent="12" name="NmSopir">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="93" parent="12" name="AlamatSopir">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="94" parent="12" name="TelpSopir">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="95" parent="12" name="NoSIM">
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)</data-type>
+      </column>
+      <column id="96" parent="12" name="TarifPerJam">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <key id="97" parent="12" name="PRIMARY">
+        <columns>IDSopir</columns>
+        <primary>1</primary>
+      </key>
+      <column id="98" parent="13" name="NoTransaksi">
+        <mandatory>1</mandatory>
+        <data-type>varchar(8)</data-type>
+      </column>
+      <column id="99" parent="13" name="TglPesan">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="100" parent="13" name="TglPinjam">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="101" parent="13" name="JamPinjam">
+        <mandatory>1</mandatory>
+        <data-type>time</data-type>
+      </column>
+      <column id="102" parent="13" name="TglKembaliRencana">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="103" parent="13" name="JamKembaliRencana">
+        <mandatory>1</mandatory>
+        <data-type>time</data-type>
+      </column>
+      <column id="104" parent="13" name="TglKembaliReal">
+        <mandatory>1</mandatory>
+        <data-type>date</data-type>
+      </column>
+      <column id="105" parent="13" name="JamKembaliReal">
+        <mandatory>1</mandatory>
+        <data-type>time</data-type>
+      </column>
+      <column id="106" parent="13" name="Denda">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="107" parent="13" name="KilometerPinjam">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="108" parent="13" name="KilometerKembali">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="109" parent="13" name="BBMPinjam">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="110" parent="13" name="BBMKembali">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="111" parent="13" name="KondisiMobilPinjam">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="112" parent="13" name="KondisiMobilKembali">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="113" parent="13" name="Kerusakan">
+        <mandatory>1</mandatory>
+        <data-type>varchar(225)</data-type>
+      </column>
+      <column id="114" parent="13" name="BiayaKerusakan">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="115" parent="13" name="BiayaBBM">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="116" parent="13" name="NoKTP">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="117" parent="13" name="NIK">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="118" parent="13" name="IDSopir">
+        <mandatory>1</mandatory>
+        <data-type>varchar(5)</data-type>
+      </column>
+      <column id="119" parent="13" name="NoPlat">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="120" parent="13" name="total">
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)</data-type>
+      </column>
+      <column id="121" parent="13" name="status">
+        <mandatory>1</mandatory>
+        <data-type>int(1)</data-type>
+      </column>
+      <index id="122" parent="13" name="IDSopir">
+        <columns>IDSopir</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="123" parent="13" name="NIK">
+        <columns>NIK</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="124" parent="13" name="NoKTP">
+        <columns>NoKTP</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <index id="125" parent="13" name="NoPlat">
+        <columns>NoPlat</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="126" parent="13" name="PRIMARY">
+        <columns>NoTransaksi</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="127" parent="13" name="transaksisewa_ibfk_1">
+        <columns>NoKTP</columns>
+        <ref-key>~.pelanggan.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="128" parent="13" name="transaksisewa_ibfk_2">
+        <columns>NIK</columns>
+        <ref-key>~.karyawan.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="129" parent="13" name="transaksisewa_ibfk_3">
+        <columns>IDSopir</columns>
+        <ref-key>~.sopir.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="130" parent="13" name="transaksisewa_ibfk_4">
+        <columns>NoPlat</columns>
+        <ref-key>~.kendaraan.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="131" parent="14" name="IDType">
+        <mandatory>1</mandatory>
+        <data-type>int(5)</data-type>
+      </column>
+      <column id="132" parent="14" name="NmType">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+      </column>
+      <column id="133" parent="14" name="Keterangan">
+        <mandatory>1</mandatory>
+        <data-type>text</data-type>
+      </column>
+      <key id="134" parent="14" name="PRIMARY">
+        <columns>IDType</columns>
+        <primary>1</primary>
+      </key>
     </database-model>
   </data-source>
 </component>

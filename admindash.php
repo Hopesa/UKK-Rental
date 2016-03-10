@@ -8,7 +8,7 @@
 
 include_once 'config/config.php';
 
-if(!loggedin())
+if(!loggedinSpc())
 {
     redirect('login.php');
 }

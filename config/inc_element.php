@@ -77,7 +77,7 @@ $sidebar.='
     </form>
     <ul class="nav menu">
         <li class="active">
-            <a href="index.html">
+            <a href="index.php">
                 <svg class="glyph stroked home">
                     <use xlink:href="#stroked-home" />
                 </svg>
@@ -87,7 +87,7 @@ $sidebar.='
         <li><a href="pemilik.php">Data Pemilik</a></li>
         <li><a href="sopir.php">Data Sopir</a></li>
         <li><a href="pelanggan.php">Data Pelanggan</a></li>
-        <li><a href="reservasi.php">Data Reservasi</a></li>
+        <li><a href="mngreservasi.php">Data Reservasi</a></li>
         <li><a href="laporan.php">Laporan</a></li>
         '.$menuli.'
 

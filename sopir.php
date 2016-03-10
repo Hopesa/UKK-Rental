@@ -2,112 +2,42 @@
 /**
  * Created by PhpStorm.
  * User: Hopesa
- * Date: 09/03/2016
- * Time: 12:19
+ * Date: 10/03/2016
+ * Time: 09:58
  */
 require_once('config/config.php');
-$outputa='';
-$outputb='';
+if(!loggedInSpc()){
+    redirect('403.php');
+}
 ?>
 <!DOCTYPE html>
-<html>
+    <html>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rental - Mobil</title>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Rental - Mobil</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/datepicker3.css" rel="stylesheet">
-    <link href="css/bootstrap-table.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/datepicker3.css" rel="stylesheet">
+        <link href="css/bootstrap-table.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
 
-    <!--Icons-->
-    <script src="js/lumino.glyphs.js"></script>
+        <!--Icons-->
+        <script src="js/lumino.glyphs.js"></script>
 
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
+        <!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
 
-</head>
+    </head>
 
-<body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><span>Administrasi</span>Rental</a>
-            <ul class="user-menu">
-                <li class="dropdown pull-right">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <svg class="glyph stroked male-user">
-                            <use xlink:href="#stroked-male-user"></use>
-                        </svg> User <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a href="#">
-                                <svg class="glyph stroked male-user">
-                                    <use xlink:href="#stroked-male-user"></use>
-                                </svg> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <svg class="glyph stroked gear">
-                                    <use xlink:href="#stroked-gear"></use>
-                                </svg> Settings</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <svg class="glyph stroked cancel">
-                                    <use xlink:href="#stroked-cancel"></use>
-                                </svg> Logout</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-
-    </div>
-    <!-- /.container-fluid -->
-</nav>
-
-<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-    <form role="search">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-        </div>
-    </form>
-    <ul class="nav menu">
-        <li class="active">
-            <a href="index.html">
-                <svg class="glyph stroked home">
-                    <use xlink:href="#stroked-home" />
-                </svg>
-                Dashboard</a>
-        </li>
-
-        <li><a href="laporan.php">Laporan</a></li>
-        <li><a href="tampilmobil.php">Data Mobil</a></li>
-
-
-
-
-        <li role="presentation" class="divider"></li>
-        <li>
-            <a href="login.html">
-                <svg class="glyph stroked male-user">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-male-user"></use>
-                </svg> Login Page</a>
-        </li>
-    </ul>
-
-</div>
+    <body>
+    <?php
+    echo $nav;
+    echo $sidebar;
+    ?>
 <!--/.sidebar-->
 
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
@@ -127,7 +57,7 @@ $outputb='';
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Manajemen Pemilik</h1>
+            <h1 class="page-header">Manajemen Sopir</h1>
         </div>
     </div>
     <!--/.row-->
@@ -171,7 +101,7 @@ $outputb='';
         $outputa.= '<div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Daftar Pemilik</div>
+                    <div class="panel-heading">Daftar Sopir</div>
                     <div class="panel-body">
                         <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="nama" data-sort-order="desc">
 
@@ -180,23 +110,22 @@ $outputb='';
                                     <th data-field="pemilik" data-sortable="true">Pemilik</th>
                                     <th data-field="alamat" data-sortable="true">Alamat</th>
                                     <th data-field="telepon" data-sortable="true">Telepon</th>
-                                    <th data-field="mobilt" data-sortable="true">Jumlah Mobil</th>
+                                    <th data-field="mobilt" data-sortable="true">No SIM</th>
+                                    <th data-field="mobilt" data-sortable="true">Tarif</th>
                                     <th data-field="action" data-clickable="true">Action</th>
                                 </tr>
                             </thead>
                             ';
         echo $outputa;
-        $sql=mysql_query('select * from pemilik') or trigger_error("Query Failed: " . mysql_error());;
+        $sql=mysql_query('select * from sopir') or trigger_error("Query Failed: " . mysql_error());;
         while($data=mysql_fetch_array($sql)){
             $output ='';
-            $sqlb=mysql_query("select * from kendaraan WHERE KodePemilik='$data[KodePemilik]'");
-            $jumlah=mysql_num_rows($sqlb);
-
             $output .='<tr>
-                                <td>'.$data['NmPemilik'].'</td>
-                                <td>'.$data['AlamatPemilik'].'</td>
-                                <td>'.$data['TelpPemilik'].'</td>
-                                <td>'.$jumlah.'</td>
+                                <td>'.$data['NmSopir'].'</td>
+                                <td>'.$data['AlamatSopir'].'</td>
+                                <td>'.$data['TelpSopir'].'</td>
+                                <td>'.$data['NoSIM'].'</td>
+                                <td>'.$data['TarifPerJam'].'</td>
                                 <td><a href="pemilik.php?id='.$data['KodePemilik'].'&action=edit" style="height:50px">Edit </a><a href="deletepemilik.php?id='.$data['KodePemilik'].'"> Delete</a></td>
                             </tr>
                             ';

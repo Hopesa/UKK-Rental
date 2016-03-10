@@ -58,3 +58,27 @@ function hitungHari($kdbook){
     $row = mysql_fetch_assoc($query);
     return $row['selisih'];
 }
+function generateKodePemilik(){
+    $sql = "SELECT MAX(KodePemilik) as maxid from pemilik where KodePemilik LIKE 'PMK%'";
+    $query = mysql_query($sql);
+    $slc = mysql_fetch_assoc($query);
+
+    $maxid = $slc['maxid'];
+
+    $id = (int) substr($maxid,3,3);
+    $id++;
+
+    $newid = "PMK".sprintf("%03s", $id);
+
+    if($newid)
+        return $newid;
+    else
+        return false;
+}
+
+function totalPendapatan(){
+    $sql = "select SUM(total) as total from transaksisewa WHERE PERIOD_DIFF(curdate(),TglKembaliReal)<=30 and PERIOD_DIFF(curdate(),TglKembaliReal)>=1";
+    $query = mysql_query($sql);
+    $row = mysql_fetch_assoc($query);
+    return $row['total'];
+}

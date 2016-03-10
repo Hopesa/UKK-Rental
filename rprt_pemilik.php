@@ -6,9 +6,6 @@
  * Time: 21:20
  */
 require_once('config/config.php');
-if (!loggedIn()){
-    redirect('403.php');
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +40,7 @@ if (!loggedIn()){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><span>Pelanggan</span>Rental</a>
+                <a class="navbar-brand" href="#"><span>Administrasi</span>Rental</a>
                 <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -81,15 +78,14 @@ if (!loggedIn()){
         </form>
         <ul class="nav menu">
             <li class="active">
-                <a href="profile.php">
+                <a href="index.html">
                     <svg class="glyph stroked home">
                         <use xlink:href="#stroked-home" />
                     </svg>
 Dashboard</a>
             </li>
 
-            <li><a href="historypelanggan.php">History Pemesanan</a></li>
-            <li><a href="tampilmobiluser.php">Pesan Mobil</a></li>
+
 
 
 
@@ -124,28 +120,34 @@ Dashboard</a>
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">History Reservasi Anda</div>
+                    <div class="panel-heading">Laporan Mobil Anda</div>
                     <div class="panel-body">
                         <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="pesan" data-sort-order="desc">
 
                             <thead>
                                 <tr>
-                                    <th data-field="nama" data-sortable="false">Nama Pelanggan</th>
-                                    <th data-field="pesan" data-sortable="true">Tanggal Pesan</th>
-                                    <th data-field="pinjam" data-sortable="true">Tanggal Pinjam</th>
-                                    <th data-field="kembali" data-sortable="true">Tanggal Kembali</th>
                                     <th data-field="mobil" data-sortable="true">Nama Mobil</th>
                                     <th data-field="merek" data-sortable="true">Merk</th>
                                     <th data-field="tipe" data-sortable="true">Type</th>
                                     <th data-field="plat" data-sortable="true">No Plat</th>
+                                    <th data-field="nama" data-sortable="false">Nama Pelanggan</th>
                                     <th data-field="sopir" data-sortable="true">Nama Sopir</th>
-                                    <th data-field="total" data-sortable="true">Total</th>
-                                    <th data-field="status" data-sortable="true">Status</th>
+                                    <th data-field="pesan" data-sortable="true">Tanggal Pesan</th>
+                                    <th data-field="pinjam" data-sortable="true">Tanggal Pinjam</th>
+                                    <th data-field="kembali" data-sortable="true">Tanggal Kembali Rencana</th>
+                                    <th data-field="kembali" data-sortable="true">Tanggal Kembali Real</th>
+
+                                    <!--<th data-field="total" data-sortable="true">Total</th> -->
+                                    <!--<th data-field="status" data-sortable="true">Status</th> -->
                                 </tr>
                             </thead>
                             <?php
-                            $ktp = $_SESSION['ktp'];
-                            $sql=mysql_query("select * from transaksisewa WHERE NoKTP='$ktp'") or trigger_error("Query Failed: " . mysql_error());;
+                            $kdpemilik = $_SESSION['pemilik'];
+                            $sql = mysql_query("select * from kendaraan where KodePemilik='$kdpemilik'");
+                            $milik = mysql_fetch_array($sql);
+                            //$ktp = $_SESSION['ktp'];
+                            $plat = $milik['NoPlat'];
+                            $sql=mysql_query("select * from transaksisewa WHERE NoPlat='$plat'") or trigger_error("Query Failed: " . mysql_error());;
                             while($data=mysql_fetch_array($sql)) {
                                 $output = '';
                                 //$sqlb=mysql_query("select * from merk WHERE KodeMerk='$data[KodeMerk]'");
@@ -165,35 +167,21 @@ Dashboard</a>
                                 $sqla = mysql_query("select * from sopir WHERE IDSopir='$data[IDSopir]'");
                                 $sopir = mysql_fetch_array($sqla);
 
-                                switch ($data['status']) {
-                                    case 0:
-                                       $status = 'Pending';
-                                             break;
-                                    case 1:
-                                        $status = 'Approved/Mobil Disiapkan';
-                                             break;
-                                    case 2:
-                                        $status = 'Booking Selesai';
-                                             break;
-                                    case 3:
-                                        $status = 'Booking Selesai(Denda Terlambat)';
-                                            break;
-                                    default:
-                                        $status='No Data';
-                                        ;
-                                }
                                 $output .= '<tr>
-                                <td>' . $pelanggan['NamaPel'] . '</td>
-                                <td>' . $data['TglPesan'] . '</td>
-                                <td>' . $data['TglPinjam'] . '</td>
-                                <td>' . $data['TglKembaliReal'] . '</td>
                                 <td>' . $kendaraan['Nama Mobil'] . '</td>
                                 <td>' . $merk['NmMerk'] . '</td>
                                 <td>' . $type['NmType'] . '</td>
                                 <td>' . $data['NoPlat'] . '</td>
+                                <td>' . $pelanggan['NamaPel'] . '</td>
                                 <td>' . $sopir['NmSopir'] . '</td>
-                                <td>' . $data['total'] . '</td>
-                                <td>' . $status . '</td>
+                                <td>' . $data['TglPesan'] . '</td>
+                                <td>' . $data['TglPinjam'] . '</td>
+                                <td>' . $data['TglKembaliRencana'] . '</td>
+                                <td>' . $data['TglKembaliReal'] . '</td>
+
+                                <td>' . $merk['NmMerk'] . '</td>
+                                <td>' . $type['NmType'] . '</td>
+                                <td>' . $data['NoPlat'] . '</td>
                             </tr>
                             ';
                                 //if($data['StatusRental']==1)

@@ -2,6 +2,7 @@
 
 // start the session before any output.
 session_start();
+error_reporting(E_ALL & ~E_NOTICE ^ E_DEPRECATED);
 /***********
 Remember to use PDO (But..
  ************/

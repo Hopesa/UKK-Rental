@@ -2,7 +2,7 @@
 
 require_once 'config/config.php';
 
-if(loggedin())
+if(loggedInSpc())
 {
     redirect('admindash.php');
 }

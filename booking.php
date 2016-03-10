@@ -6,6 +6,11 @@
  * Time: 19:12
  */
 require_once('config/config.php');
+if (!loggedIn()){
+    redirect('403.php');
+}
+$tgl = '';
+$kembali ='';
 if(isset($_GET['id']));
 {
     $query = mysql_query("Select * from kendaraan WHERE NoPlat = '$_GET[id]'");
@@ -47,16 +52,23 @@ if(isset($_POST['btn-submit']))
     }
     else if(addBookCar($kdbook, $tglpinjam, $jampijam, $tglkembali, $jamkembali, $ktp, $sopir, $plat, $tglpesan))
     {
+        $tgl .=''.$tglpinjam.' '.$jampijam.'';
+        $kembali .=''.$tglkembali.' '.$jamkembali.'';
+        $ts1 = strtotime(str_replace('/', '-', $tgl));
+        $ts2 = strtotime(str_replace('/', '-', $kembali));
+        $diff = abs(abs($ts1 - $ts2)/60);
         $hari = (int) hitungHari($kdbook);
-        $hargambl = (int) $data['TarifPerJam'];
-        $hargaspr = (int) $dataspr['TarifPerJam'];
-        $total = ($hari * $hargambl)+ $hargaspr;
+//        $jam = round((strtotime($jampijam) - strtotime($jamkembali)));
+//        $tarif = $data['TarifPerJam'] * 24;
+        $hargambl = (int) $data['TarifPerJam'] / 60;
+        $hargaspr = (int) $dataspr['TarifPerJam'] / 60;
+        $total = ($diff * $hargambl)+ ($diff * $hargaspr);
         addTotalTransaksi($kdbook,$total);
         unset($_SESSION['tglpinjam']);
         unset($_SESSION['jampinjam']);
         unset($_SESSION['jamkembali']);
 
-        alert("Anda Memesan $hari hari dengan total harga $total");
+        alert("Anda Memesan $hari hari, atau $diff menit dengan total harga $total");
         direct("tampilmobiluser.php");
     }
     else
@@ -149,9 +161,6 @@ echo $output;
 
         <li><a href="charts.html">Laporan</a></li>
         <li><a href="tables.html">Data Mobil</a></li>
-
-
-
 
         <li role="presentation" class="divider"></li>
         <li>

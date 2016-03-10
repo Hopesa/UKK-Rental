@@ -2,10 +2,11 @@
 
 require_once 'config/config.php';
 
-if(loggedin()!="")
+if(loggedinSpc())
 {
-    redirect('admin.php');
+    redirect('admindash.php');
 }
+redirect('index.php');
 
 if(isset($_POST['btn-signup']))
 {
