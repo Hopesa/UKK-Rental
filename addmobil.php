@@ -26,7 +26,7 @@ if(isset($_POST['btn-submit']))
         $mobil = $_POST['mobil'];
         $tipe = $_POST['tipe'];
         $plat = $_POST['plat'];
-        $merk = $_POST['merk'];
+        $merk = $_POST['produsen'];
         $tahun = $_POST['tahun'];
         $tarif = $_POST['tarif'];
         $deskripsi = $_POST['deskripsi'];
@@ -120,7 +120,7 @@ echo $sidebar;
                                         $sql=mysql_query('select * from type') or trigger_error("Query Failed: " . mysql_error());;
                                         while($data=mysql_fetch_array($sql)) {
                                             $output = '';
-                                            $output .= '<option value="' . $data['IDType'] . '">' . $data['NmType'] . '</option>';
+                                            $output .= '<option value="'.$data['IDType'].'">' . $data['NmType'] . '</option>';
                                             echo $output;
                                         }
                                         ?>
@@ -146,7 +146,7 @@ echo $sidebar;
                                         $sql=mysql_query('select * from merk') or trigger_error("Query Failed: " . mysql_error());;
                                         while($data=mysql_fetch_array($sql)) {
                                             $output = '';
-                                            $output .= '<option value="' . $data['KodeMerk'] . '">' . $data['NmMerk'] . '</option>';
+                                            $output .= '<option value="'.$data['KodeMerk'].'">' . $data['NmMerk'] . '</option>';
                                             echo $output;
                                         }
                                         ?>

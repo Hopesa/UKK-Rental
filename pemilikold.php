@@ -6,11 +6,9 @@
  * Time: 21:20
  */
 require_once('config/config.php');
-
 if (!loggedInSpc()){
     redirect('403.php');
 }
-$newestid = generateKodePemilik();
 $outputa='';
 $outputb='';
 ?>
@@ -112,7 +110,6 @@ $outputb='';
                             <thead>
                                 <tr>
                                     <th data-field="pemilik" data-sortable="true">Pemilik</th>
-                                    <th data-field="username" data-sortable="true">Username</th>
                                     <th data-field="alamat" data-sortable="true">Alamat</th>
                                     <th data-field="telepon" data-sortable="true">Telepon</th>
                                     <th data-field="mobilt" data-sortable="true">Jumlah Mobil</th>
@@ -129,7 +126,6 @@ $outputb='';
 
                                 $output .='<tr>
                                 <td>'.$data['NmPemilik'].'</td>
-                                <td>'.$data['username'].'</td>
                                 <td>'.$data['AlamatPemilik'].'</td>
                                 <td>'.$data['TelpPemilik'].'</td>
                                 <td>'.$jumlah.'</td>
@@ -245,17 +241,14 @@ $outputb ='';
                 echo $outputa;
             }
             else {
-                $idpemilik = (generateKodePemilik());
                 if(isset($_POST['btn-submit']))
                 {
-                    $kode_pemilik = $_POST['kode'];
                     $pemilik = $_POST['nama'];
+                    $kode = $_POST['ktp'];
                     $telepon = $_POST['telp'];
                     $alamat = $_POST['alamat'];
-                    $username = $_POST['username'];
-                    $pass = $_POST['pass'];
 
-                    if(add_Pemilik($kode_pemilik,$pemilik,$alamat,$telepon,$username,$pass))
+                    if(add_Pemilik($pemilik,$kode,$telepon,$alamat))
                     {
                         $output = 'Success';
                         echo $output;
@@ -267,6 +260,7 @@ $outputb ='';
                         exit; //Stop
                     }
                 }
+
                 $outputa.=' <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -277,10 +271,10 @@ $outputb ='';
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="KTP">Kode Pemilik</label>
+                                <label class="col-md-4 control-label" for="KTP">No KTP</label>
                                 <div class="col-md-5">
-                                    <input id="mobil" name="kode" type="text" placeholder=""
-                                           class="form-control input-md" required value="'.$idpemilik.'" readonly>
+                                    <input id="mobil" name="ktp" type="number" placeholder="No KTP"
+                                           class="form-control input-md" required="">
 
                                 </div>
                             </div>
@@ -310,24 +304,6 @@ $outputb ='';
                                 <label class="col-md-4 control-label" for="Pemilik">Telepon</label>
                                 <div class="col-md-5">
                                     <input id="pemilik" name="telp" type="number" placeholder="Telepon Pemilik"
-                                           class="form-control input-md" required="">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="Pemilik">Username</label>
-                                <div class="col-md-5">
-                                    <input id="pemilik" name="username" type="text" placeholder="Username"
-                                           class="form-control input-md" required="">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="Pemilik">Password</label>
-                                <div class="col-md-5">
-                                    <input id="pemilik" name="pass" type="password" placeholder="Password"
                                            class="form-control input-md" required="">
 
                                 </div>

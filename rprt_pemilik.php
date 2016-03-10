@@ -78,17 +78,12 @@ require_once('config/config.php');
         </form>
         <ul class="nav menu">
             <li class="active">
-                <a href="index.html">
+                <a href="profile_pemilik.php">
                     <svg class="glyph stroked home">
                         <use xlink:href="#stroked-home" />
                     </svg>
 Dashboard</a>
             </li>
-
-
-
-
-
 
             <li role="presentation" class="divider"></li>
             <li>
@@ -142,13 +137,13 @@ Dashboard</a>
                                 </tr>
                             </thead>
                             <?php
-                            $kdpemilik = $_SESSION['pemilik'];
+                            $kdpemilik = $_SESSION['kode_pemilik'];
                             $sql = mysql_query("select * from kendaraan where KodePemilik='$kdpemilik'");
-                            $milik = mysql_fetch_array($sql);
+                            while($milik = mysql_fetch_array($sql)){
                             //$ktp = $_SESSION['ktp'];
                             $plat = $milik['NoPlat'];
-                            $sql=mysql_query("select * from transaksisewa WHERE NoPlat='$plat'") or trigger_error("Query Failed: " . mysql_error());;
-                            while($data=mysql_fetch_array($sql)) {
+                            $sqlx=mysql_query("select * from transaksisewa WHERE NoPlat='$plat'") or trigger_error("Query Failed: " . mysql_error());;
+                            while($data=mysql_fetch_array($sqlx)) {
                                 $output = '';
                                 //$sqlb=mysql_query("select * from merk WHERE KodeMerk='$data[KodeMerk]'");
                                 //$datab=mysql_fetch_assoc($sqlb);
@@ -187,6 +182,7 @@ Dashboard</a>
                                 //if($data['StatusRental']==1)
                                 echo $output;
                                 //$output = '';
+                            }
                             }
 ?>
                         </table>

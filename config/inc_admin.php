@@ -86,10 +86,10 @@ VALUES  ('$id_sopir','$nama','$alamat','$telp','$nosim','$tarif')";
 function delete_driver($id_driver){
 }
 
-function add_pemilik($pemilik,$kode,$telepon,$alamat){
+function add_pemilik($kode,$pemilik,$alamat,$telp,$username,$password){
 
-    $sql = "INSERT INTO pemilik (KodePemilik, NmPemilik, AlamatPemilik, TelpPemilik)
-VALUES ('$kode','$pemilik','$alamat','$telepon')";
+    $sql = "INSERT INTO pemilik (KodePemilik, NmPemilik, AlamatPemilik, TelpPemilik, username, pass)
+VALUES ('$kode','$pemilik','$alamat','$telp','$username','".md5($password)."')";
     $query = mysql_query($sql) or die(mysql_error());
 
     if ($query) {

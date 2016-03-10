@@ -149,16 +149,16 @@ echo $sidebar;
                 $status = 'Pending';
                 break;
             case 1:
-                $status = 'Approved/Mobil Disiapkan';
+                $status = 'Mobil di Pelanggan';
                 break;
             case 2:
-                $status = 'Mobil Dipinjam';
+                $status = 'Selesai/Mobil Kembali';
                 break;
             case 3:
-                $status = 'Booking Selesai/Mobil Kembali';
+                $status = 'Terlambat';
                 break;
             case 4:
-                $status = 'Terlambat, Bayar Denda';
+                $status = 'Selesai (Denda)';
                 break;
             default:
                 $status='No Data';

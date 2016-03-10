@@ -44,7 +44,7 @@ function editSetujuiTransaksi($NoTransaksi,$bbm, $hargabbm, $kondisi, $kilometer
     return false;
 }
 function editKembaliTransaksi($NoTransaksi,$bbm,$kerusakan,$biayakerusakan, $kondisi, $kilometer){
-    $current_date = date('d/m/Y');
+    $current_date = date('Y-m-d');
     $time_current = date('H:i');
     $query = mysql_query("SELECT * FROM transaksisewa WHERE NoTransaksi = '$NoTransaksi'");
     $data = mysql_fetch_array($query);
@@ -58,7 +58,7 @@ function editKembaliTransaksi($NoTransaksi,$bbm,$kerusakan,$biayakerusakan, $kon
     return false;
 }
 function editDendaTransaksi($NoTransaksi,$bbm,$kerusakan,$biayakerusakan, $kondisi, $kilometer,$denda){
-    $current_date = date('Y/m/d');
+    $current_date = date('Y-m-d');
     $time_current = date('H:i');
     $query = mysql_query("SELECT * FROM transaksisewa WHERE NoTransaksi = '$NoTransaksi'");
     $data = mysql_fetch_array($query);
@@ -71,19 +71,16 @@ function editDendaTransaksi($NoTransaksi,$bbm,$kerusakan,$biayakerusakan, $kondi
     return false;
 }
 function hitungTelat($NoTransaksi,$TglKembaliRencana,$JamKembaliRencana){
-    $current_date = date('Y/m/d');
-    $time_current = date('H:i');
-    $kembali ='';
-    $tgl ='';
-    $kembali .=''.$current_date.' '.$time_current.'';
     $query = mysql_query("SELECT * FROM transaksisewa WHERE NoTransaksi = `$NoTransaksi`");
     $data = mysql_fetch_array($query);
+    $kembali ='';
+    $tgl ='';
+    $kembali .=''.$data['TglKembaliReal'].' '.$data['JamKembaliReal'].'';
     $tgl.=''.$TglKembaliRencana.' '.$JamKembaliRencana.'';
-    $kembali .=''.$current_date.' '.$time_current.'';
     $ts1 = strtotime(str_replace('/', '-', $tgl));
     $ts2 = strtotime(str_replace('/', '-', $kembali));
     $diff = abs($ts2 - $ts1)/3600;
-    $denda = $diff;
+    $denda = round($diff * 500);
     if ($denda){
         return $denda;
     }

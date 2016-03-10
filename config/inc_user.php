@@ -69,6 +69,13 @@ function loggedInSpc() {
     }
     return false;
 }
+function loggedInPmk() {
+    // check both loggedin and username to verify admin.
+    if (isset($_SESSION['pmk']) && isset($_SESSION['username'])) {
+        return true;
+    }
+    return false;
+}
 function loginKaryawan($pUsername, $pPassword) {
     // See if the username and password are valid.
     $sql = "SELECT * FROM login WHERE UserName = '" . mysql_real_escape_string($pUsername) . "' AND Password = '" . md5($pPassword). "' LIMIT 1";
@@ -79,7 +86,6 @@ function loginKaryawan($pUsername, $pPassword) {
         $_SESSION['nik']= $row['NIK'];
         $_SESSION['username'] = $row['UserName'];
         $_SESSION['tipe']= $row['TypeUser'];
-        $_SESSION['loggedin'] = true;
         $_SESSION['ptgs'] = true;
         return true;
     }
@@ -110,7 +116,27 @@ function loginPelanggan($pUsername, $pPassword) {
     else
         return false;
 }
-
+function loginPemilik($pUsername, $pPassword) {
+    // See if the username and password are valid.
+    $sql = "SELECT * FROM pemilik WHERE username = '" . mysql_real_escape_string($pUsername) . "' AND pass = '" . md5($pPassword). "' LIMIT 1";
+    $query = mysql_query($sql) or trigger_error("Query Failed: " . mysql_error());
+    // If one row was returned, the user was logged in!
+    if (mysql_num_rows($query) == 1) {
+        $row = mysql_fetch_assoc($query);
+        $sql1 = "select * from pemilik where KodePemilik='".$row['KodePemilik']."' ";
+        $sql2 = mysql_query($sql1);
+        $slc = mysql_fetch_array($sql2);
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['kode_pemilik'] = $row['KodePemilik'];
+        $_SESSION['nama'] = $slc['NmPemilik'];
+        $_SESSION['alamat'] = $slc['AlamatPemilik'];
+        $_SESSION['telp'] = $slc['TelpPemilik'];
+        $_SESSION['pmk'] = true;
+        return true;
+    }
+    else
+        return false;
+}
 function updatePelanngan($pNama, $pAlamat, $pTelp){
     $sql = "UPDATE pelanggan SET NamaPel='".$pNama."', AlamatPel='".$pAlamat."', TelpPel='".$pTelp."' WHERE NoKTP= '".$_SESSION['ktp']."' ";
     $query = mysql_query($sql);
@@ -133,6 +159,39 @@ function updatePassPelanggan($pPass)
     if (md5($pPass) == $slc['Password']) {
         $pPass=md5($pPass);
         $sql2 = "UPDATE login_pelanggan SET Password='".$pPass."' WHERE NoKTP= '".$_SESSION['ktp']."'";
+        $query2 = mysql_query($sql2);
+
+        if($query2)
+            return true;
+        else
+            return false;
+    }
+    else{
+        return false;
+    }
+}
+function updatePemilik($pNama, $pAlamat, $pTelp){
+    $sql = "UPDATE pemilik SET NmPemilik='".$pNama."', AlamatPemilik='".$pAlamat."', TelpPemilik='".$pTelp."' WHERE KodePemilik= '".$_SESSION['kode_pemilik']."'";
+    $query = mysql_query($sql);
+    $query2 = mysql_query("SELECT * FROM pemilik where KodePemilik='".$_SESSION['kode_pemilik']."'");
+    $slc = mysql_fetch_array($query2);
+    $_SESSION['nama'] = $slc['NmPemilik'];
+    $_SESSION['alamat'] = $slc['AlamatPemilik'];
+    $_SESSION['telp'] = $slc['TelpPemilik'];
+    if($query)
+        return true;
+    else
+        return false;
+}
+
+function updatePassPemilik($pPass)
+{
+    $sql = "SELECT * FROM pemilik WHERE KodePemilik='" . $_SESSION['kode_pemilik'] . "'";
+    $query = mysql_query($sql);
+    $slc = mysql_fetch_array($query);
+    if (md5($pPass) == $slc['pass']) {
+        $pPass=md5($pPass);
+        $sql2 = "UPDATE pemilik SET pass='".$pPass."' WHERE KodePemilik= '".$_SESSION['kode_pemilik']."'";
         $query2 = mysql_query($sql2);
 
         if($query2)

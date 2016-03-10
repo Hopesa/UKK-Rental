@@ -78,7 +78,7 @@ require_once('config/config.php');
         </form>
         <ul class="nav menu">
             <li class="active">
-                <a href="index.html">
+                <a href="profile_pemilik.php">
                     <svg class="glyph stroked home">
                         <use xlink:href="#stroked-home" />
                     </svg>

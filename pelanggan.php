@@ -81,16 +81,18 @@ if(!loggedInSpc()){
             <div class="col-xs-12 col-md-6 col-lg-4">
                 <div class="panel panel-orange panel-widget">
                     <div class="row no-padding">
+                        <a href="tampilmobil.php">
                         <div class="col-sm-3 col-lg-4 widget-left">
                             <svg class="glyph stroked chevron left">
                                 <use xlink:href="#stroked-chevron-left" />
                             </svg>
                         </div>
+
                         <div class="col-sm-9 col-lg-7 widget-right">
                             <div class="large">Mobil</div>
                             <div class="text-muted">Manajemen Mobil</div>
                         </div>
-                    </div>
+                    </div></a>
                 </div>
         </a>
     </div>
@@ -101,33 +103,33 @@ if(!loggedInSpc()){
         $outputa.= '<div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Daftar Pemilik</div>
+                    <div class="panel-heading">Daftar Pelanggan</div>
                     <div class="panel-body">
                         <table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="nama" data-sort-order="desc">
 
                             <thead>
                                 <tr>
-                                    <th data-field="pemilik" data-sortable="true">Pemilik</th>
+                                    <th data-field="pemilik" data-sortable="true">Nama Pelanggan</th>
                                     <th data-field="alamat" data-sortable="true">Alamat</th>
                                     <th data-field="telepon" data-sortable="true">Telepon</th>
-                                    <th data-field="mobilt" data-sortable="true">Jumlah Mobil</th>
+                                    <th data-field="telepon" data-sortable="true">Jumlah Reservasi</th>
                                     <th data-field="action" data-clickable="true">Action</th>
                                 </tr>
                             </thead>
                             ';
         echo $outputa;
-        $sql=mysql_query('select * from pemilik') or trigger_error("Query Failed: " . mysql_error());;
+        $sql=mysql_query('select * from pelanggan') or trigger_error("Query Failed: " . mysql_error());;
         while($data=mysql_fetch_array($sql)){
             $output ='';
-            $sqlb=mysql_query("select * from kendaraan WHERE KodePemilik='$data[KodePemilik]'");
+            $sqlb=mysql_query("select * from transaksisewa WHERE NoKTP='$data[NoKTP]'");
             $jumlah=mysql_num_rows($sqlb);
 
             $output .='<tr>
-                                <td>'.$data['NmPemilik'].'</td>
-                                <td>'.$data['AlamatPemilik'].'</td>
-                                <td>'.$data['TelpPemilik'].'</td>
+                                <td>'.$data['NamaPel'].'</td>
+                                <td>'.$data['AlamatPel'].'</td>
+                                <td>'.$data['TelpPel'].'</td>
                                 <td>'.$jumlah.'</td>
-                                <td><a href="pemilik.php?id='.$data['KodePemilik'].'&action=edit" style="height:50px">Edit </a><a href="deletepemilik.php?id='.$data['KodePemilik'].'"> Delete</a></td>
+                                <td><a href="delete.php?pelanggan&id='.$data['NoKTP'].'">Delete</a></td>
                             </tr>
                             ';
             echo $output;

@@ -13,6 +13,9 @@ if (loggedInSpc()){
 else if(loggedIn()){
     redirect('profile.php');
 }
+else if(loggedInPmk()){
+    redirect('profile_pemilik.php');
+}
 echo '<!DOCTYPE html>
 <html>
     <head>
@@ -66,7 +69,7 @@ echo '<!DOCTYPE html>
         <div class="container">
             <div class="content">
             <img src="faraday-logo.png" height="300">
-                <div class="title">Index Rental Mobil<br><a href="login.php">Login Petugas</a>|<a href="login_pelanggan.php">Login Pelanggan</a><br><a href="register_pelanggan.php">Register Pelanggan</a></div>
+                <div class="title">Index Rental Mobil<br><a href="login.php">Login Petugas</a>|<a href="login_pelanggan.php">Login Pelanggan</a><br><a href="login_pemilik.php">Login Pemilik</a>|<a href="register_pelanggan.php">Register Pelanggan</a></div>
             </div>';
 
 
